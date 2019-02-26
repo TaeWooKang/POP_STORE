@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>이미지 등록 완료</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../lumen/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="../freebie-bootstrap-footers/assets/css/Footer-with-button-logo.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <% include ../public/stylesheets/nav %>
+<style>
+  p{
+    display: inline-block;
+  }
+  .panel {
+    -moz-box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    -webkit-box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    background-color: #fff;
+    margin: 30px 20px 30px 140px;
+    padding: 44px 44px 44px 44px;
+  }
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.1;
+  }
+  .header h1 a {
+    color: #fff;
+    text-decoration: none;
+  }
+  .my-input{
+    box: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: text;
+    padding: 8px 10px;
+    transition: border .1s linear;
+    width:100%;
+    height: 47px;
+    margin-top:0px;
+  }
+  .my-input1{
+    box: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: text;
+    padding: 8px 10px;
+    transition: border .1s linear;
+    width:100%;
+    height: 100px;
+    margin-top:0px;
+  }
+  .btn-lg{
+    background: #54C7C3;
+    width:100%;
+    font-weight: 600;
+    color:#fff;
+    padding: 8px 25px;
+    display:inline-block;
+    margin-top:18px;
+  }
+  .text-center1{
+    padding-left:34%;
+    padding-right:-18%;
+    text-align:center;
+  }
+  #load {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: block;
+    opacity: 0.8;
+    background: white;
+    z-index: 99;
+    text-align: center;
+  }
+
+  #load > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+  }
+</style>
+</head>
+<body>
+
+<div class="container" >
+  <h5 style="margin-top: 80px; margin-bottom: 10px; font-weight: 700; font-size: 30px; text-align: center;">이미지 등록이 완료되었습니다.</h5>
+  <div class="row">
+    <div class="panel">
+      <div class=" panel-body ">
+        <div class="row">
+          <div class="col-xs-4" style="width: 314px;" id="image">
+            <img class="img-responsive" src="/<%=data.origin_path %>" style="width: 100%";>
+          </div>
+          <div class="col-xs-6" style="width: 414px; margin-left: 40px;">
+            <div class="profile-block">
+              <div class="form-group row">
+                <h5>등록자</h5>
+                <div class="form-control my-input" id="user_id">
+                  <%= data.user_id %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <h5>이미지 이름</h5>
+                <div class="form-control my-input" id="image_name">
+                  <%= data.image_name %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <h5>이미지 정보</h5>
+                  <% var filesize1;
+                  function number_to_human_size(x) {
+                    var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+                    var e = Math.floor(Math.log(x) / Math.log(1024));
+                    return (x / Math.pow(1024, e)).toFixed(2) + " " + s[e];
+                  }
+                  filesize1 = number_to_human_size(data.filesize);
+                  %>
+                <div class="form-control my-input1" id="image_info">
+                  <p>사이즈: <%= filesize1 %><br>타입: <%= data.filetype %><br>등록일자:
+                  <% var d = data.timestamp%><%= d.getFullYear() +'년 '+ (d.getMonth()+1) +'월 '+ d.getDate() +'일 '+ d.getHours() +'시 '+ d.getMinutes() +'분 '+ d.getSeconds()+'초 '%>
+                  </p>
+
+                </div>
+              </div>
+              <div class="form-group row">
+                <h5>이미지 ID</h5>
+                <input class="form-control my-input" id="image_id" readonly value="<%= data.image_id %>">
+              </div>
+              <div class="form-group row">
+                <h5>TX ID</h5>
+                <input class="form-control my-input" id="tx_id" readonly value="<%= data.tx_id %>">
+              </div>
+              <div class="form-group row">
+                <h5>현재 소유자</h5>
+                <div class="form-control my-input" id="own_user_id">
+                  <%= data.user_id %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" panel-body ">
+        <div class="row">
+          <div class="col-sm-9">
+            <div class="text-center1">
+              <button type="enroll" class=" btn btn-success" style="width:300px; font-size: 16px;" onclick="movemain()">메인페이지로 이동</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function movemain() {
+    location.href = "/main";
+  }
+</script>
+<% include ../public/stylesheets/footer %>
+</body>
+</html>

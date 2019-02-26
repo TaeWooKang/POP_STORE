@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>회원가입 페이지</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="lumen/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/freebie-bootstrap-footers/assets/css/Footer-with-button-logo.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .my-input{
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      cursor: text;
+      padding: 8px 10px;
+      transition: border .1s linear;
+      width:244px;
+    }
+    .header-title{
+      margin: 5rem 0;
+    }
+    h1{
+      font-size: 31px;
+      line-height: 40px;
+      font-weight: 600;
+      color:#4c5357;
+    }
+    h2{
+      color: #5e8396;
+      font-size: 21px;
+      line-height: 32px;
+      font-weight: 400;
+    }
+  </style>
+  <style>
+    :root {
+      --input-padding-x: 1rem;
+      --input-padding-y: .75rem;
+    }
+
+    body {
+      background: url('/5-beautiful-bootstrap-headers/assets/img/back5.jpg');
+      /*background: linear-gradient(to right, #0062E6, #33AEFF);*/
+    }
+
+    .card-signin {
+      border: 0;
+      border-radius: 0.5rem;
+      box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .card-signin .card-title {
+      margin-bottom: 2rem;
+      font-weight: 300;
+      font-size: 1.5rem;
+    }
+
+    .card-signin .card-img-left {
+      width: 45%;
+      /* Link to your background image using in the property below! */
+      background: scroll center url('/5-beautiful-bootstrap-headers/assets/img/back21.jpg');
+      background-size: cover;
+    }
+
+    .card-signin .card-body {
+      padding: 2rem;
+    }
+
+    .form-signin {
+      width: 100%;
+    }
+
+    .form-signin .btn {
+      font-size: 80%;
+      border-radius: 5rem;
+      letter-spacing: .1rem;
+      font-weight: bold;
+      padding: 1rem;
+      transition: all 0.2s;
+    }
+
+    .form-label-group {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .form-label-group input {
+      height: auto;
+      border-radius: 0.5rem;
+    }
+
+    .form-label-group>input,
+    .form-label-group>label {
+      padding: var(--input-padding-y) var(--input-padding-x);
+    }
+
+    .form-label-group>label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      margin-bottom: 0;
+      /* Override default `<label>` margin */
+      line-height: 1.5;
+      color: #495057;
+      border: 1px solid transparent;
+      border-radius: .25rem;
+      transition: all .1s ease-in-out;
+    }
+
+    .form-label-group input::-webkit-input-placeholder {
+      color: transparent;
+    }
+
+    .form-label-group input:-ms-input-placeholder {
+      color: transparent;
+    }
+
+    .form-label-group input::-ms-input-placeholder {
+      color: transparent;
+    }
+
+    .form-label-group input::-moz-placeholder {
+      color: transparent;
+    }
+
+    .form-label-group input::placeholder {
+      color: transparent;
+    }
+
+    .form-label-group input:not(:placeholder-shown) {
+      padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+      padding-bottom: calc(var(--input-padding-y) / 3);
+    }
+
+    .form-label-group input:not(:placeholder-shown)~label {
+      padding-top: calc(var(--input-padding-y) / 3);
+      padding-bottom: calc(var(--input-padding-y) / 3);
+      font-size: 12px;
+      color: #777;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-xl-9 mx-auto">
+      <div class="card card-signin flex-row my-5">
+        <div class="card-img-left d-none d-md-flex">
+          <!-- Background image for card set in CSS! -->
+        </div>
+
+        <div class="card-body">
+          <h1 class="text-center" style="font-weight: 400;">POP STORE</h1>
+          <hr class="my-4">
+          <div>
+            <div class="myform" style="margin-left: 40px;">
+              <form id="signup_form" name="signup_form" onsubmit="return formCheck()" action="./signup" method="post">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="form-group">
+                      <input type="text" name="user_id"  class="form-control my-input" id="user_id" placeholder="아이디">
+                    </div>
+                  </div>
+                  <div class="col-xs-3">
+                    <div class="text-center ">
+                      <button type="button" style="margin-left: 20px;" class="btn btn-primary" name="idck" onclick="duplicate_check('id-check')">중복확인 </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="form-group">
+                      <input type="password" name="password"  class="form-control my-input" id="password" placeholder="비밀번호">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="form-group">
+                      <input type="password" name="password_confirm"  class="form-control my-input" id="password_confirm" placeholder="비밀번호 확인">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="form-group">
+                      <input type="text" name="user_nickname"  class="form-control my-input" id="user_nickname" placeholder="닉네임">
+                    </div>
+                  </div>
+                  <div class="col-xs-3">
+                    <div class="text-center ">
+                      <button type="button" style="margin-left: 20px;" class="btn btn-primary" name="nickck" onclick="duplicate_check('nick-check')">중복확인 </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="form-group">
+                      <input type="text" name="user_name"  class="form-control my-input" id="user_name" placeholder="이름">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="form-group">
+                      <input type="number" min="0" name="phone" id="phone"  class="form-control my-input" placeholder="전화번호">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="form-group">
+                      <input type="email" name="email"  class="form-control my-input" id="email" placeholder="이메일">
+                    </div>
+                  </div>
+                </div>
+                <div class="row" style="margin-left: 20px;">
+                  <div class="col-xs-4">
+                    <div class="text-center">
+                      <button type="submit" class=" btn btn-primary" style="width : 150px;">가입하기</button>
+                      <button type="button" class=" btn btn-success" style="width : 150px;" onclick="moveindex()">돌아가기</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include ../public/stylesheets/footer %>
+
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var nullcheck = /\s/g;
+  var emailcheck = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+  var phonecheck = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+  var check_id ="";
+  var check_nickname = "";
+  var check_id_result = 0;
+  var check_nickname_result = 0;
+
+  function moveindex() {
+    location.href = "/index";
+  }
+
+  function formCheck(){
+    console.log('form check run')
+    var user_id = document.getElementsByName("user_name")[0].value;
+    var password = document.getElementsByName("password")[0].value;
+    var password_confirm = document.getElementsByName("password_confirm")[0].value;
+    var user_nickname = document.getElementsByName("user_nickname")[0].value;
+    var user_name = document.getElementsByName("user_name")[0].value;
+    var email = document.getElementsByName("email")[0].value;
+    var phone = document.getElementsByName("phone")[0].value;
+
+    if(!user_id || !password || !password_confirm || !user_name || !user_nickname || !email || !phone){
+      alert("입력되지 않은 값이 있습니다.");
+      return false;
+    }
+    if (check_id_result == 0){
+      alert("ID 중복검사를 실행해주세요.")
+      return false;
+    }
+    if (check_nickname_result == 0){
+      alert("닉네임 중복검사를 실행해주세요.")
+      return false;
+    }
+    if (!check(phonecheck,phone,"잘못된 휴대폰번호 형식입니다. 숫자, - 를 포함한 숫자만 입력하세요.")) {
+      return false;
+    }
+
+    if (!check(emailcheck,email,"잘못된 이메일 형식입니다.")) {
+      return false;
+    }
+    if (check_id_result==false){
+      alert("입력되지 않은 값이 있습니다.");
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+  function check(checkmethod, something, message){
+    if(checkmethod.test(something)){
+      return true;
+    }
+    alert(message);
+    something.value="";
+  }
+  function duplicate_check(value){
+    var value = value;
+    var check_id ="";
+    var check_nickname = "";
+    if(value == 'id-check'){
+      check_id = document.getElementsByName("user_id")[0].value;
+      if(!check_id){
+        alert("입력된 값이 없습니다.");
+        return false;
+      }
+      check_mechod = "user_id";
+      check_array =[check_id,check_mechod];
+    }
+    else{
+      check_nickname = document.getElementsByName("user_nickname")[0].value;
+      if(!check_nickname){
+        alert("입력된 값이 없습니다.");
+        return false;
+      }
+      check_mechod = "user_nickname";
+      check_array =[check_nickname,check_mechod];
+    }
+
+    jsonData = JSON.stringify(check_array);
+
+    $.ajax({
+      type : "post",
+      url : "/signup/duplicate_check",
+      data : jsonData,
+      async : true,
+      dataType :"json",
+      contentType : "application/json; charset=UTF-8",
+      success : function(data){
+        console.log(data);
+        if (data == 0){
+          alert("이미 존재합니다.");
+        }
+        else{
+          if (check_mechod == "user_id"){
+            check_id_result = 1;
+            alert("사용가능한 아이디입니다.");
+            console.log(check_mechod)
+            console.log(check_id_result)
+          }
+          else{
+            check_nickname_result = 1;
+            alert("사용가능한 닉네임입니다.");
+            console.log(check_mechod)
+            console.log(check_nickname_result)
+          }
+        }
+      },
+      error : function(jqXHR, textStatus, err){
+        alert("error :"+err[0]);
+      }
+    })
+  }
+</script>
+
+
+</body>
+</html>

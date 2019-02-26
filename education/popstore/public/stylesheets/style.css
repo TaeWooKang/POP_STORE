@@ -1,0 +1,14 @@
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #0c141f;
+}
+::-webkit-scrollbar{width: 16px;}
+::-webkit-scrollbar-track {background-color:#555;}
+::-webkit-scrollbar-thumb {background-color:#2e353b;border-radius: 4px;}
+::-webkit-scrollbar-thumb:hover {background: #286090;}
+::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+  width:16px;height:16px;background:#286090;}

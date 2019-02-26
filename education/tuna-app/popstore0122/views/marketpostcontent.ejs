@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>판매글 보기</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../lumen/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../freebie-bootstrap-footers/assets/css/Footer-with-button-logo.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <% include ../public/stylesheets/nav %>
+    <style>
+        .container1{
+            margin-left:auto;
+            margin-right:auto;
+            padding-top: 40px;
+        }
+        .container{
+            width: 1120px;
+            max-width: none !important;
+            justify-content: center;
+        }
+        .panel {
+            background-color: #fff;
+            margin: 28px 20px 30px 0px;
+            padding: 10px 44px 44px 44px;
+            width: 100%;
+        }
+
+        .row{
+            margin: 30px 20px 30px 20px;
+        }
+        h1{
+            font-size: 40px;
+            line-height: 40px;
+            font-weight: 600;
+            color:#4c5357;
+        }
+        .header h1 a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .my-input{
+            box: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            cursor: text;
+            /*padding: 8px 10px;*/
+            transition: border .1s linear;
+            width:100%;
+            height: 47px;
+            margin-top:0px;
+        }
+        .my-input2{
+             box: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+             cursor: text;
+             padding: 10px 10px 100px 10px;
+             transition: border .1s linear;
+             width:100%;
+             margin-top:0px;
+             height: 90px;
+         }
+        .my-input3{
+            box: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            cursor: text;
+            padding: 0px 0px 50px 5px;
+            transition: border .1s linear;
+            width:100%;
+            margin-top:0px;
+            height: 90px;
+        }
+        .text-center1{
+            padding-left:34%;
+            padding-right:-18%;
+            text-align:center;
+            margin-top: 10px;
+        }
+        .col-md-6{
+            margin-left:30px;
+        }
+        .row1{
+            width: 95%;
+            margin-left:2%;
+        }
+        .row2{
+            width: 600px;
+            margin-left:2%;
+        }
+        .btn-md1{
+            background-color:#ea4335;
+            color: white;
+            width: 100%;
+            margin-top:10px;
+            margin-bottom:10px;
+        }
+        .navbar-brand{
+            margin-left: 10%;
+        }
+        .form-inline{
+            margin-right: 10%;
+        }
+        .img-circle{
+            border-radius: 50%;
+            width:70px;
+        }
+    </style>
+    <script>
+        var imageList = null;
+        function get_imagecompleteselect(req,res){
+            $.ajax({
+                type : "post",
+                url : "",
+                dataType : "json",
+                async: false,
+                contentType : "application/json; charset=UTF-8",
+                success : function(data) {
+                    $('#imgdiv').html(`<img width="100%" src="/${data[0].copy_path}">`);
+                }
+            });
+        };
+        $(function() {
+            get_imagecompleteselect();
+        });
+    </script>
+</head>
+<body>
+
+<div class="container1" style="margin:auto;">
+    <div class="row" style="width: 1240px; margin:auto;">
+        <div class="panel" style="width: 1238px; margin-left:auto; margin-right:auto;">
+            <div class="panel-body">
+                <button class="btn btn-danger" style="float:right; margin-right: 20px; margin-top:10px;" onclick="movemodified()">수정하기</button>
+                <h1><%= board_content.subject %></h1>
+                <hr>
+
+                <div class="row">
+                    <div class="col-md-5" id="imgdiv">
+                        <button type="button" class="btn btn-md1" onclick="moveimagehistory()">이미지 내역 확인하기</button>
+                    </div>
+
+                    <div class="col-md-6" style="margin-left: 60px;">
+                        <div class="profile-block">
+                            <div class="form-group row">
+                                <h5>판매자</h5>
+                                <div class="form-control my-input">
+                                    <p> <%= board_content.user_nickname %> </p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <h5 id="board_content2">판매포인트</h5>
+                                <div class="form-control my-input">
+                                    <p> <%= board_content.price %> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class=" panel-body">
+                <div class="row">
+                    <div class="form-group row1">
+                        <h5>이미지 정보</h5>
+                        <div class="form-control my-input2">
+                            <% function number_to_human_size(x) { %>
+                                <%    var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB']; %>
+                                <%    var e = Math.floor(Math.log(x) / Math.log(1024)); %>
+                                <%    return (x / Math.pow(1024, e)).toFixed(2) + " " + s[e]; %>
+                            <% };%>
+                            <% filesize1 = number_to_human_size(image_content.filesize) %>
+                            크기: <%= filesize1 %>
+                            <br>형식: <%= image_content.filetype %>
+                            <br>Tx_id: 3350dfj35667
+                            <% var d = image_content.timestamp%>
+                            <br>이미지 등록일자:<%= d.getFullYear() +'년 '+ (d.getMonth()+1) +'월 '+ d.getDate() +'일 '+ d.getHours() +'시 '+ d.getMinutes() +'분 '+ d.getSeconds() +'초 '%>
+                        </div>
+                    </div>
+                    <div class="form-group row1">
+                        <h5>판매글 내용</h5>
+                        <div class="form-control my-input2">
+                            <p><%= board_content.content %></p>
+                        </div>
+                    </div>
+                    <div class="form-group row1">
+                        <h5>태그</h5>
+                        <% tagged_html ="" %>
+                        <% for(i=0; i < board_tag.length; i++){ %>
+                        <% tagged_html += " #"+board_tag[i].tagged;}%>
+                        <p id=tag class="form-control my-input"> <%= tagged_html %> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="" style="text-align:center; height:100px; padding-top:10px; padding-bottom: 10px;" >
+                    <button class="btn btn-success" style="width:200px; font-size: 16px; margin-right:3px;" onclick="purchase()">구매하기</button>
+                    <button class="btn btn-primary" style="width:200px; font-size: 16px;" onclick="movemarket()">목록으로</button>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group row1">
+                        <div>
+                            <span class="badge badge-success">댓글 <%= board_comment.length %> | 조회수 <%= board_content.hit %></span>
+                            
+                            <%
+                            comment_table_html=""
+                            for(i = 0; i < board_comment.length; i++) {
+                                own_user_nickname = board_comment[i].user_nickname;
+                                board_comment_key = board_comment[i].comment_key;
+                                d2 = board_comment[i].timestamp
+                                d3 = d2.getFullYear() +'년 '+ (d2.getMonth()+1) +'월 '+ d2.getDate() +'일 '+ d2.getHours() +'시 '+ d2.getMinutes() +'분 '+ d2.getSeconds()+'초 '
+                                comment_table_html += `
+                                        <div class ="row" id="comment_${board_comment_key}">
+                                            <div class="" style="margin-left:50px;">
+                                                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-circle">
+                                                <div style="text-align: center;">
+                                                   <span class="badge badge-dark">
+                                                       ${board_comment[i].user_nickname}
+                                                   </span>
+                                                </div>
+                                            </div>
+                                            <div class="" style="width:830px; margin-left: 10px;">
+                                                <div id="board_comment_content_${board_comment_key}">
+                                                    <div class="form-control my-input">
+                                                        <h3>${board_comment[i].comment_content}</h3>
+                                                    </div>
+                                                    <div style="float:right;">
+                                                    <span class="badge badge-primary">${d3}</span></br>
+                                                    <input style="float:right;" type="button" class=" btn btn-danger" value="삭제" onclick="del_comment('${own_user_nickname}','${board_comment_key}')">
+                                                    <input style="float:right; margin-right:3px;" type="button" class=" btn btn-success" value="수정" onclick="edit_comment('${own_user_nickname}','${board_comment_key}')">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        `;
+                            } %>
+                            <%- comment_table_html %>
+                            <div class ="row" id="comment_${board_comment_key}" style="height:100px; padding-top: 10px;">
+                                <input type="text" name="add_comment_content"  style="margin-left:50px; width:780px; height:auto;" class="form-control my-input3" id="add_comment_content" placeholder="">
+                                <input type="button" class="btn btn-success" style="margin-left:10px; width:120px; font-size: 15px;" id="btnAddComment" value="등록">
+                                </br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <data id="data" b_id="<%= board_content.BOARD_NO %>" b_point="<%= board_content.price%>" seller_id="<%= board_content.user_id %>" i_id="<%= image_content.image_id %>" blind="<%= board_content.blind %>" creater="<%= image_content.creater%>" hidden />
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+        function moveimagehistory() {
+            location.href = "/imagehistory";
+        }
+        function buyable(){
+            cart = {};
+            board = $("#data").attr("b_id");
+            point = $("#data").attr("b_point");
+            seller_id = $("#data").attr("seller_id");
+            image_id = $("#data").attr("i_id");
+            blind = $("#data").attr("blind");
+            cart = {board:board, point:point, seller_id:seller_id,image_id:image_id,blind:blind};
+            
+            $.ajax({
+                type: "post",
+                url: "/market/buyable",
+                data: cart,
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    if (data == 1) {
+                        cannot_html = `<button type="point" class="btn btn-outline-warning disabled" style="margin-left:310px;">포인트부족</button>`;
+                        $("#board_content2").append(cannot_html);
+                    }
+                    else if(data == 2){
+                        can_html = `<button type="point" class="btn btn-outline-success disabled" style="margin-left:310px;">구매가능</button>`;
+                        $("#board_content2").append(can_html);
+                    }
+                    else if(data == 0){
+                        cannot_html = `<button type="point" class="btn btn-outline-danger disabled" style="margin-left:310px;">구매불가</button>`;
+                        alert("로그인 후 이용해 주세요.");
+                        $("#board_content2").append(cannot_html);
+                    }
+                    else{
+                        alert("새로고침 후 다시 시도해 주세요.");
+                    }
+                }
+            });
+        }
+        buyable()
+
+        function edit_comment(own_user_nickname, board_comment_key){
+            var edit_confirm_data = {};
+            edit_confirm_data = {own_user_nickname, board_comment_key};
+            $.ajax({
+                    type : "post",
+                    url : "/market/edit_comment_confirm",
+                    data : edit_confirm_data,
+                    dataType : "json",
+                    async: false,
+                    success: function(data){
+                        if(data == -1){
+                            alert("error!");
+                        }
+                        else if(data == 0){
+                            alert("자신의 댓글이 아닙니다.");
+                        }else{
+                            var edit_input=`
+                                            <div>
+                                                <input type="text" name="edit_comment_content"  class="form-control my-input" id="edit_comment_content" value="">
+                                                <div style="float:right;">
+                                                    <button type="button" class="btn btn-success" onclick="edit_content('${own_user_nickname}','${board_comment_key}')">등록</button>
+                                                    <button type="button" class="btn btn-danger" onclick="edit_cancel()">취소</button>
+                                                </div>
+                                            </div>`;
+                            $(`#board_comment_content_${board_comment_key}`).html(edit_input);
+                        }
+                    }
+                });
+        };
+        function edit_content(own_user_nickname ,board_comment_key){
+            board_no = $("#data").attr("b_id");
+            edit_comment_content = $("#edit_comment_content").val();
+            if(!board_comment_key){
+                alert("존재하지 않는 댓글입니다.");
+            }
+            else{
+                $.ajax({
+                    type : "post",
+                    url : "/market/edit_comment",
+                    data : edit_data,
+                    dataType : "json",
+                    async: false,
+                    success: function(data){
+                        if(data == -1){
+                            alert("error!");
+                        }
+                        else if(data == 0){
+                            alert("자신의 댓글이 아닙니다.");
+                        }
+                        else{
+                            location.href = `/market/marketpostcontent/${$("#data").attr("b_id")}`;
+                        }
+                    }
+                });
+            }
+        }
+
+        function edit_cancel(){
+            location.href=`/market/marketpostcontent/${$("#data").attr("b_id")}`;
+        }
+
+        function del_comment(own_user_nickname, board_comment_key){
+            del_comment = {};
+            board_no = $("#data").attr("b_id");
+            if(!board_comment_key){
+                alert("존재하지 않는 댓글입니다.");
+            }
+            else{
+                del_comment = {board_no:board_no, board_comment_key:board_comment_key, own_user_nickname:own_user_nickname};
+                $.ajax({
+                    type : "post",
+                    url : "/market/del_comment",
+                    data : del_comment,
+                    dataType : "json",
+                    async: false,
+                    success: function(data){
+                        if(data == -1){
+                            alert("error!");
+                        }
+                        else if(data == 0){
+                            alert("자신의 댓글이 아닙니다.");
+                        }
+                        else{
+                            location.href = `/market/marketpostcontent/${$("#data").attr("b_id")}`;
+                        }
+                    }
+                });
+            }};
+
+        $("#btnAddComment").on("click", function(){
+            add_comment = {};
+            board_no = $("#data").attr("b_id");
+            comment_content = $("#add_comment_content").val();
+            if(!comment_content){
+                alert("댓글 내용이 입력되지 않았습니다.");
+            }
+            else{
+                add_comment = {board_no:board_no, comment_content:comment_content};
+                $.ajax({
+                    type : "post",
+                    url : "/market/add_comment",
+                    data : add_comment,
+                    dataType : "json",
+                    async: false,
+                    success: function(data){
+                        if(data == 1){
+                            location.href = `/market/marketpostcontent/${$("#data").attr("b_id")}`;
+                        }
+                        else{
+                            alert("등록 실패");
+                            location.href = `/market/marketpostcontent/${$("#data").attr("b_id")}`;
+                        }
+                    }
+                });
+            }
+        });
+        function purchase() {
+            cart = {};
+            board = $("#data").attr("b_id");
+            point = $("#data").attr("b_point");
+            seller_id = $("#data").attr("seller_id");
+            image_id = $("#data").attr("i_id");
+            blind = $("#data").attr("blind");
+            cart = {board:board, point:point, seller_id:seller_id,image_id:image_id,blind:blind};
+            
+            $.ajax({
+                type: "post",
+                url: "/market/cart",
+                data: cart,
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    if (data == 4) {
+                        alert("이미 판매가 완료된 페이지 입니다.");
+                    }
+                    else if (data == 0) {    
+                        point = $("#data").attr("b_point");
+                        priholder = $("#data").attr("seller_id");
+                        image_id = $("#data").attr("i_id");
+                        creater = $("#data").attr("creater");
+
+                        history_item = {point : point, priholder : priholder,image_id : image_id,creater : creater};
+                        $.ajax({
+                            type: "post",
+                            url: "/imagehistory/trade_tuna/",
+                            dataType: "json",
+                            data : history_item,
+                            success: function (data) {
+                            location.href = '/market/marketpurchasecomplete';
+                            }
+                        })
+                    } else if (data == 1) {
+                        alert("포인트가 부족합니다.");
+                    } else if (data == 2) {
+                        alert("로그인 후 다시 시도해주세요.");
+                        location.href = "/login";
+                    } else if (data == 3) {
+                        alert("나의 이미지는 구매할 수 없습니다.");
+                    } else {
+                        alert("다시 시도해주세요.");
+                    }
+                }
+            });
+        }
+
+        function movemarket() {
+            location.href = "/market";
+        }
+        function movemodified() {
+            location.href = `/market/marketpostedit/${$("#data").attr("b_id")}`;
+        }
+    </script>
+
+<% include ../public/stylesheets/footer %>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>내 정보 수정 페이지</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../lumen/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="../freebie-bootstrap-footers/assets/css/Footer-with-button-logo.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <% include ../public/stylesheets/nav %>
+
+  <style>
+    .my-input1{
+      box: soild 0 1px 2px rgba(0, 0, 0, 0.1);
+      border-color: #ea4335;
+      cursor: text;
+      padding: 8px 10px;
+      transition: border .1s linear;
+      width:100%;
+      text-align: center;
+      color: #ea4335;
+      margin-bottom:2%;
+    }
+  </style>
+</head>
+<body>
+
+<section>
+  <div class="container">
+      <form style="width: 400px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom:40px;" method="POST" action="/profile/profilechange" onsubmit="return formCheck()">
+        <div class="text-center" style="margin-left: auto; margin-right: auto;">
+          <h1>POP STORE</h1>
+        </div>
+        <div id="content" style="margin-left: 20px; margin-right: 20px;">
+
+        <h5>아이디</h5>
+        <div id="user_id" style="margin-bottom: 5px;"></div>
+        <h5>비밀번호</h5>
+        <div style="margin-bottom: 5px;"><input type="password" style="width:350px;" class="form-control my-input" placeholder="＊＊＊＊＊＊" readonly></div>
+        <h5>닉네임</h5>
+        <div class="row" style="margin-left: auto; margin-bottom: 5px;">
+          <div id="user_nickname" style="inline:block;"></div>
+          <div>
+            <button style="width:100px; inline:block;" type="button" class="btn btn-danger" id="nicknk" name="nicknk" onclick="duplicate_check('nick-check')">중복검사 </button>
+          </div>
+        </div>
+        <h5>이름</h5>
+        <div id="user_name" style="margin-bottom: 5px;"></div>
+        <h5>전화번호</h5>
+        <div id="phone" style="margin-bottom: 5px;"></div>
+        <h5>E-mail</h5>
+        <div id="email" style="margin-bottom: 5px;"></div>
+        <div class="row" style="margin-top: 20px;">
+          <div class="col" style="text-align: center">
+            <button type="submit" class="btn btn-success" style="inline:block; width:150px;">수정하기 </button>
+          </div>
+          <div class="col" style="text-align: center">
+            <button type="button" class="btn btn-primary" style="inline:block; width:150px;" onclick="moveprofile()">돌아가기</button>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top: 20px;">
+          <div class="my-input1" id="error1">
+          </div>
+        </div>
+        </div>
+      </form>
+  </div>
+</section>
+
+
+<script type="text/javascript">
+  $("#error1").hide();
+  function get_profile(req,res){
+    var html ="";
+    $.ajax({
+      type : "post",
+      url : "/profile/get_profile",
+      dataType : "json",
+      contentType : "application/json; charset=UTF-8",
+      success : function(data){
+        var div = document.getElementById('#user_profile');
+        var user_id = data.key.user_id;
+        var user_nickname = data.key.user_nickname;
+        var user_name = data.key.user_name;
+        var phone = data.key.phone;
+        var email = data.key.email;
+        var html_user_id=`<input type="text" style="width:350px;" class="form-control" value="${user_id}" id="change_userid" name="change_userid" readonly>`;
+        var html_user_nickname=`<input type="text" style="width:240px; margin-right: 10px;" class="form-control" value="${user_nickname}" id="change_usernickname" name = "change_usernickname" >`;
+        var html_user_name=`<input type="text" style="width:350px;" class="form-control" value="${user_name}" id="change_username" name ="change_username" readOnly>`;
+        var html_phone=`<input type="text" style="width:350px;" class="form-control" value="${phone}" id="change_phone" name="change_phone" >`;
+        var html_email=`<input type="text" style="width:350px;" class="form-control" value="${email}" id="change_email" name="change_email">`;
+        $('#user_id').append(html_user_id);
+        $('#user_nickname').prepend(html_user_nickname);
+        $('#user_name').append(html_user_name);
+        $('#phone').append(html_phone);
+        $('#email').append(html_email);
+      }
+    })
+  }
+  get_profile();
+
+  function moveprofile() {
+    location.href = "/profile/profilechange_cancel";
+  }
+
+  var emailcheck = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+  var emailcheckerror = "잘못된 이메일 형식입니다.";
+  var phonecheck = /^01([0|1|6|7|8|9])([0-9]{3,4})?([0-9]{4})$/;
+  var phonecheckerror = "잘못된 전화번호 형식입니다.";
+  var check_nickname = "";
+  var check_nickname_result = 0;
+
+  function formCheck(){
+    console.log('form check run')
+    var user_nickname = document.getElementsByName("change_usernickname")[0].value;
+    var email = document.getElementsByName("change_email")[0].value;
+    var phone = document.getElementsByName("change_phone")[0].value;
+
+    if (check_nickname_result == 0){
+      $("#error1").show();
+      $("#error1").empty();
+      $("#error1").append("닉네임 중복검사를 실행해주세요.");
+      return false;
+    }
+    if (!check(phonecheck,phone,phonecheckerror)){
+      return false;
+    }
+
+    if (!check(emailcheck,email,emailcheckerror)) {
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+  function check(checkmethod, something, message){
+    if(checkmethod.test(something)){
+      return true;
+    }
+    $("#error1").show();
+    $("#error1").empty();
+    $("#error1").append(message);
+    something.value="";
+  }
+  function duplicate_check(value){
+    var value = value;
+    var check_nickname = "";
+    check_nickname = document.getElementsByName("change_usernickname")[0].value;
+    check_mechod = "user_nickname";
+    check_array =[check_nickname,check_mechod];
+
+    jsonData = JSON.stringify(check_array);
+
+    $.ajax({
+      type : "post",
+      url : "/profile/duplicate_check",
+      data : jsonData,
+      async : true,
+      dataType :"json",
+      contentType : "application/json; charset=UTF-8",
+      success : function(data){
+        console.log(data);
+        if (data == 0){
+          alert("이미 존재합니다.");
+        }
+        else if(data ==2){
+          alert("변화가 없습니다.");
+          check_nickname_result = 2;
+        }
+
+        else{
+          check_nickname_result = 1;
+          alert("사용가능한 닉네임입니다.");
+          console.log(check_mechod)
+          console.log(check_nickname_result)
+        }
+      },
+      error : function(jqXHR, textStatus, err){
+        alert("error :"+err[0]);
+      }
+    })
+  }
+</script>
+
+<% include ../public/stylesheets/footer %>
+
+</body>
+</html>

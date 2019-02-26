@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>POP STORE</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../lumen/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="../../freebie-bootstrap-footers/assets/css/Footer-with-button-logo.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <% include ../public/stylesheets/nav %>
+  <style>
+    .container{
+      width: 1120px;
+      max-width: none !important;
+      justify-content: center;
+    }
+    .send-button{
+      background: #54C7C3;
+      width:100%;
+      font-weight: 600;
+      color:#fff;
+      padding: 8px 25px;
+    }
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .my-input{
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      cursor: text;
+      padding: 8px 10px;
+      transition: border .1s linear;
+      width:100%;
+    }
+    .my-input1{
+      box: soild 0 1px 2px rgba(0, 0, 0, 0.1);
+      border-color: #ea4335;
+      cursor: text;
+      padding: 8px 10px;
+      transition: border .1s linear;
+      width:100%;
+      text-align: center;
+      color: #ea4335;
+      margin-bottom:2%;
+    }
+    .header-title{
+      margin: 10rem 0 5rem 0;
+    }
+    h1{
+      font-size: 31px;
+      line-height: 40px;
+      font-weight: 600;
+      color:#4c5357;
+    }
+    h2{
+      color: #5e8396;
+      font-size: 21px;
+      line-height: 32px;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+
+<section>
+  <div class="container" style="margin-bottom: 100px;">
+    <div class="col-xs-6 mx-auto text-center">
+      <div class="header-title">
+        <h1>POP STORE</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 mx-auto" style="width:344px;">
+        <div class="myform form ">
+          <form action="" method="post" name="email">
+            <div class="form-group">
+              <input type="text" name="email"  class="form-control my-input" id="email" placeholder="이메일">
+            </div>
+            <div class="row text-center">
+              <button type="button" class=" btn btn-success" style="width:340px; font-size: 16px; margin-right:auto; margin-left:auto;" id="btnFindMyId">아이디 찾기</button>
+              <div class="col" style="margin-top: 10px;">
+                <a href="/login" class="ps-hero__content__link">로그인</a>
+              </div>
+              <div class="col" style="margin-top: 10px;">
+                <a href="/login/findPW">비밀번호 찾기</a>
+              </div>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+              <div class="form-control my-input1" id="result1">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  $("#result1").hide();
+  function moveindex() {
+    location.href = "/index";
+  }
+  $("#btnFindMyId").on("click", function(){
+    var email = $('#email').val();
+    email = {email : email};
+    $.ajax({
+      type : "post",
+      url : "findID",
+      dataType : "json",
+      data : email,
+      success : function(data){
+        if (data==""){
+          $("#result1").show();
+          $("#result1").empty();
+          $("#result1").append("해당 이메일이 존재하지 않습니다.");
+        }
+        else{
+          user_id = data[0].user_id;
+          $("#result1").show();
+          $("#result1").empty();
+          $("#result1").append(`<h6>찾으시는 ID는 ${user_id} 입니다. </h6>`);
+        }
+      }
+    });
+  });
+</script>
+<% include ../public/stylesheets/footer %>
+</body>
+</html>

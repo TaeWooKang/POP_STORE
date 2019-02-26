@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<head>
+  <title>판매글 작성 페이지</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../lumen/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="../../freebie-bootstrap-footers/assets/css/Footer-with-button-logo.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="../../summernote-master/dist/summernote-lite.css" rel="stylesheet">
+  <script src="../../summernote-master/dist/summernote-lite.js"></script>
+
+  <% include ../public/stylesheets/nav %>
+  <script>
+    var imageList = null;
+    function get_imagecompleteselect(req,res){
+      $.ajax({
+        type : "post",
+        url : "",
+        dataType : "json",
+        async: false,
+        contentType : "application/json; charset=UTF-8",
+        success : function(data) {
+          imageList = data;
+        }
+      });
+    }
+
+    function imagedetail() {
+      imageList.forEach(img => {
+        div = `
+            <div style="margin: 5px;">
+              <img style="width:200px; border-radius: 5px;" src="/${img.origin_path}" onclick='showimage(${JSON.stringify(img)})'>
+            </div>
+        `;
+        $('#mydiv').append(div);
+      });
+    }
+    function hide() {
+      $('#imagecontainer').hide();
+    }
+    $(function() {
+      get_imagecompleteselect();
+      imagedetail();
+      hide();
+    });
+  </script>
+  <style>
+    .container1{
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .container{
+      width: 1120px;
+      max-width: none !important;
+      justify-content: center;
+    }
+    .panel {
+      background-color: #fff;
+      margin: 28px 20px 30px 0px;
+      padding: 10px 44px 44px 44px;
+      width: 100%;
+    }
+
+    .row{
+      margin: 30px 20px 30px 20px;
+    }
+    h1{
+      font-size: 40px;
+      line-height: 40px;
+      font-weight: 600;
+      color:#4c5357;
+    }
+    .header h1 a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .my-input{
+      box: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      cursor: text;
+      padding: 8px 10px;
+      transition: border .1s linear;
+      width:100%;
+      height: 47px;
+      margin-top:0px;
+    }
+    .my-input2{
+      box: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      cursor: text;
+      padding: 10px 10px 140px 10px;
+      transition: border .1s linear;
+      width:100%;
+      margin-bottom:2%;
+      margin-bottom:30px;
+      margin-top:0px;
+      height: 180px;
+    }
+    .text-center1{
+      padding-left:34%;
+      padding-right:-18%;
+      text-align:center;
+      margin-top: 10px;
+    }
+    .col-md-6{
+      margin-left:30px;
+    }
+    .row1{
+      width: 95%;
+      margin-left:2%;
+    }
+    .row2{
+      width: 600px;
+      margin-left:2%;
+    }
+    .btn-md1{
+      background-color:#ea4335;
+      color: white;
+      width: 100%;
+      margin-top:10px;
+      margin-bottom:10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<script>
+  function showimage(img) {
+    $('#image').html(`<img style="width:100%; margin-top: 30px; border-radius: 5px;" src="/${img.origin_path}">`);
+    imageIdInput = `<input type="text" class="form-control my-input" id="image_image_id" value="${img.image_id}" readonly>`
+    userIdInput = `<input type="text" class="form-control my-input" id="image_user_id" value="${img.user_id}" readonly>`
+    $('#image_id').empty();
+    $('#user_id').empty();
+    $('#image_id').html("<h5>이미지파일ID</h5>"+imageIdInput);
+    $('#user_id').html("<h5>판매자(현재 소유자)</h5>"+userIdInput);
+    $('#mydivdefault').hide();
+    $('#image').attr('style', 'visibility:visible');
+  }
+  $(function() {
+    $('#btnTagAdd').click(function() {
+      tag = $('#tag').val();
+      tagged = $('#tagged').val();
+      tagged = `${tagged} #${tag}`;
+      $('#tagged').val(tagged);
+    });
+
+    $('#btnTagDel').click(function() {
+      tag = $('#tag').val();
+      tagged = $('#tagged').val();
+
+      pattern = new RegExp(`#${tag}`, 'gi');  // 정규식 => 문자열에서 #ooo 글자를 찾는 것
+      tagged = tagged.replace(pattern, '');   // 정규식에 일치하는 문자열을 제거
+      tagged = tagged.replace(/  /gi, ' ');   // 공백 2개를 1개로 변경 <- 가운데 태그를 삭제하는 경우 공백 2개가 생성
+      tagged = tagged.trim();                 // 앞뒤 공백 제거 <- 맨 앞과 뒤에 태그를 삭제하는 경우 불필요한 공백이 생성
+      $('#tagged').val(tagged);
+    });
+
+    $('#btnBoardRegister').click(function(){
+      board_info ={}
+      subject = $("#subject").val();
+      image_id = $("#image_image_id").val();
+      user_id = $("#image_user_id").val();
+      content = $("#content").val();
+      point = $("#point").val();
+      tagged = $("#tagged").val();
+      tag_check = tagged.split("#");
+
+      if(!subject){
+        alert("제목이 입력되지 않았습니다.");
+        return false;
+      }
+      if(!image_id){
+        alert("이미지가 선택되지 않았습니다.");
+        return false;
+      }
+      if(!point){
+        alert("판매포인트가 입력되지 않았습니다.");
+        return false;
+      }
+      if(point > 1000000){
+        alert("판매포인트가 너무 큽니다.");
+        return false;
+      }
+      if(tag_check.length > 4){
+        alert("태그를 3개이하로 작성해 주세요.");
+      }
+      else{
+        board_info ={
+          subject : subject,
+          image_id : image_id,
+          user_id : user_id,
+          point : point,
+          content : content,
+          tagged : tagged
+        }
+        console.log(board_info)
+        $.ajax({
+          type : "post",
+          url : "/market/marketpost",
+          data : board_info,
+          dataType : "json",
+          success: function(data){
+            if(data == -1){
+              alert("등록 실패");
+            }
+            else if(data == -2){
+              alert("이미 판매글등록이 되어 있는 이미지 입니다.");
+              location.href ="/market";
+            }
+            else if(data == -3){
+              alert("판매 포인트가 너무 큽니다.");
+              return false;
+            }
+            else{
+              alert("등록 성공");
+              location.href = "/market/marketpostcontent/"+data;
+            }
+          }
+        });
+      }
+    });
+  });
+</script>
+
+  <div class="container1" style="margin-left:auto; margin-right:auto;">
+    <div class="row" style="width: 1240px; margin-left:auto; margin-right:auto;">
+      <div class="panel" style="width: 1238px; margin-left:auto; margin-right:auto;">
+        <div class="panel-body">
+        <h1>이미지 판매글 등록</h1>
+          <hr>
+        <div class="row" style="border: 1px solid gray;">
+          <div class ="col-md-4" style="margin-left:80px; text-align: center">
+            <div id="mydivdefault" style="width: 250px; height: 350px; margin:auto;">
+              <p style="margin-top:150px;">이미지를 선택하세요</p>
+            </div>
+            <div id="image" style="inline:block; margin-left:auto; margin-right:auto;">
+            </div>
+            <div class="form-group" style="margin-top: 10px;">
+              <script>
+                function imagecontainershow() {
+                  $('#imagecontainer').show();
+                }
+              </script>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="profile-block">
+              <div class="form-group row">
+                <h5>제목</h5>
+                <input type="text" class="form-control my-input" id="subject"placeholder="제목을 입력해주세요">
+              </div>
+              <div class="form-group row" id="image_id">
+                <h5>이미지파일ID</h5>
+                <input type="text" class="form-control my-input" placeholder="이미지를 선택 해주세요">
+              </div>
+            </div>
+            <div class="form-group row" id="user_id">
+              <h5>판매자(현재 소유자)</h5>
+              <input type="text" class="form-control my-input" placeholder="이미지를 선택 해주세요">
+            </div>
+            <div class="form-group row">
+              <h5>판매포인트</h5>
+              <input type="text" id="point" class="form-control my-input" placeholder="판매하고싶은 포인트를 입력해주세요">
+            </div>
+          </div>
+        </div>
+      </div>
+        <hr>
+    </div>
+  </div>
+  </div>
+  <div class=" panel-body">
+    <section class="gallery-block cards-gallery">
+      <div class="text-center">
+        <button type="button" class="btn btn-primary" style="inline:block; width:300px; font-size: 16px; margin-bottom: 10px; " onclick="imagecontainershow()">내 이미지 보기</button>
+      </div>
+
+      <div class="container" id="imagecontainer">
+        <div class="heading">
+          <h2>내 이미지 목록</h2>
+        </div>
+
+        <div class="row" id="mydiv">
+        </div>
+      </div>
+
+    </section>
+
+    <div class="row" style=" width: 1240px; margin:auto;">
+      <div class="form-group row1">
+        <h4>판매글 내용</h4>
+        <textarea id="content"></textarea>
+        <script>
+          $('#content').summernote({
+            height: 200
+          });
+        </script>
+      </div>
+      <div class="form-group row2">
+        <h4>태그추가</h4>
+        <input type="text" class="form-control my-input" id="tag">
+      </div>
+      <button id="btnTagAdd" type="enroll" style="float:right; margin-left:10px; margin-top: 35px; height: 40px;" class=" btn btn-primary">태그 추가</button>
+      <button id="btnTagDel" type="cencel" style="float:right; margin-left:2px; margin-top: 35px; height: 40px;" class=" btn btn-danger">태그 제거</button>
+
+      <div class="form-group row1">
+        <h4>태그(3개이하)</h4>
+        <input type="text" class="form-control my-input" id="tagged" placeholder="#사진 #아이유 #앨범 #앨범커버">
+      </div>
+    </div>
+  </div>
+
+  <div style="width: 1240px; margin:auto; text-align: center">
+    <div style="text-align: center; height:70px;">
+      <button type="button" style="inline:block; width:200px; font-size: 16px;" class="btn btn-dark"  id="btnBoardRegister">등록하기</button>
+      <button type="button" style="inline:block; width:200px; font-size: 16px;" class="btn btn-danger" onclick="movemarket()">돌아가기</button>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  function movemarket() {
+    location.href = "/market";
+  };
+</script>
+<% include ../public/stylesheets/footer %>
+</body>
+</html>

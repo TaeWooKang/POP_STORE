@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>POP STORE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" type="text/css" href="/5-beautiful-bootstrap-headers/assets/css/Header-Nightsky.css">
+  <link rel="stylesheet" type="text/css" href="/freebie-bootstrap-footers/assets/css/Footer-with-button-logo.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+  <style>
+    .container1{
+      height: 600px;
+      padding: 140px 0px 140px 0px;
+
+    }
+    .container3{
+      height: 400px;
+      margin: 20px 0px 20px 0px;
+    }
+    .container4{
+      height: 100px;
+      padding-top: 28px;
+    }
+    h1{
+      font-size: 31px;
+      line-height: 40px;
+      font-weight: 600;
+      color:black;
+    }
+    h2{
+      color: #fff;
+      font-size: 65px;
+      line-height: 72px;
+      font-weight: 700;
+    }
+    h5{
+      line-height: 70px;
+    }
+    h7{
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+<div class="all0"style="background: linear-gradient(to right, lavender, thistle);">
+  <div class="header-nightsky">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <a class="navbar-brand" href="#" style="font-size:40px;">POP STORE</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <h1>POP STORE</h1>
+      <p>블록체인을 통한 이미지 저작권 관리와 거래</p>
+      <div class="btn btn-primary" style="width:200px; font-size:20px;" onclick="movelogin()">로그인</div>
+      <div class="btn btn-primary" style="width:200px; font-size:20px;" onclick="movesignup()">회원가입</div>
+    </div>
+  </div>
+</div>
+<div class="all" style="padding-bottom: 40px;">
+  <div class="first-nightsky">
+    <div class="container">
+      <div class ="first">
+        <div class="container1">
+          <h1>POP STORE</h1>
+          <br>
+          <h5>POP STORE는 블록체인 기반의 이미지 저장 플랫폼입니다
+            <br>사용자가 창작한 팬아트나 직접 촬영한 사진들을 보관하고,
+            <br>다른 사용자들과 소유권을 편리하게 거래할 수 있습니다.</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="overlay" style="background: linear-gradient(to right, lemonchiffon, thistle); padding-bottom:100px;">
+  <div class="container">
+    <div class ="container4">
+      <div class = "con" style="text-align:center;">
+      <h1>FEATURES</h1>
+      </div>
+    </div>
+    <div class="second-nightsky">
+      <div class ="container3">
+        <div class = "con1" style="text-align:right; padding-top: 40px; padding-bottom:40px">
+              <h1>저작물 보관 및 거래</h1><br>
+              <h5>생성한 저작물을 판매하거나 타인의<br>
+              저작물을 구매하여 <br> 나만의 갤러리를 구성할 수 있습니다.</h5>
+        </div>
+      </div>
+    </div>
+    <div class="third-nightsky">
+      <div class ="container3">
+        <div class = "con1" style="text-align:left; padding-top: 40px; padding-bottom:40px">
+          <h1>저작물 권리 보호</h1><br>
+          <h5>저작물의 최초 등록자와 현재 소유자를 위/변조가<br>
+            불가능한 원장에 기록하여 저작권과 소유권을 동시에 보호합니다.</h5>
+        </div>
+      </div>
+    </div>
+    <div class="four-nightsky">
+      <div class ="container3">
+        <div class = "con1" style="text-align:right; padding-top: 40px; padding-bottom:40px">
+          <h1>저작물 이력 조회 및 관리</h1><br>
+          <h5>누구나 저작물의 소유이력을 조회할 수 있습니다.</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% include ../public/stylesheets/footer %>
+
+
+
+<script type="text/javascript">
+  function movelogin() {
+    location.href = "/login";
+  }
+  function movesignup() {
+    location.href = "/signup";
+  }
+</script>
+
+</body>
+</html>

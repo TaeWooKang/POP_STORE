@@ -1,0 +1,136 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hyperledger Fabric Tuna Application</title>
+    <link rel="icon" href="favicon.png" type="image/gif">
+
+    <!-- require jquery and bootstrap scripts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    
+    <!-- adding style here -->
+    <style type="text/css">
+      header{
+        background-color: lightgray;
+        font-size:20px;
+        padding:15px;
+      }
+      header, .form-group{
+        margin-bottom: 3%;
+      }
+      .form-group{
+        width:50%;
+        height:50px; 
+        background-color:#ffffff; 
+        margin:0;
+        text-align:center;
+
+
+
+      }
+      #body{
+        margin-left:3%;
+        margin-right:3%;
+      }
+      .form-control{
+        margin: 8px;
+      }
+      #right_header{
+        width:20%;
+        font-size:15px;
+        margin-right:0px;
+      }
+      #left_header{
+        margin-left:0;
+        width:40%;
+        display:inline-block;
+      } 
+      #id {
+        width:49%;
+        display: inline-block;
+      }
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+      #menumi{
+        position: relative;
+        font-size: 14px;
+        z-index: 100;
+      }
+      #popstore{
+        position: relative;
+        text-align:center;
+      }
+      .box{
+        position: absolute;
+        left: 14%;
+        text-align:left;
+        margin-top:2%;
+        padding:4%;
+        width:34%;
+        
+      }
+      .point1{
+        position: absolute;
+        right: 14%;
+        text-align:left;
+        padding:4%;
+        width:44%;
+      }
+      
+      
+    </style>
+        
+  </head>
+  <body ng-app="application" ng-controller="appController">
+    <header>
+      <div id="menumi"> 
+        
+          <a href="./index.html">go to Add Drawing |</a>
+          <a href="./index2.html">go to query Drawing |</a>
+          <a href="./index3.html">go to change Drawing Holder</a>
+        
+      </div>
+    </header>
+
+    <div id="body">
+      <div id="popstore">
+          <img src="./popsotre.png" width="240" height="240">
+      </div>
+      <nav class="box">
+              <img src="http://image.chosun.com/sitedata/image/201810/30/2018103002073_0.jpg" width="80%" height="100%" position="absolute" text-align ="center">
+      </nav>
+      <section class="form-group">
+          <!-- <label>go to Add Drawing</label> -->
+          <div class="point1">
+              <h5 style="color:green;margin-bottom:2%" id="success_create">Success! Tx ID: {{create_tuna}}</h5>
+              <br>              
+              Enter Hash of image: <input class="form-control" type="text" placeholder="Ex: ABCDE" ng-model="tuna.imagehs">
+              Enter creater: <input id="createName" class="form-control" type="text" placeholder="Ex: TAEWOO" ng-model="tuna.creater"> 
+              <input id="createSubmit" type="submit" value="Create" class="btn btn-primary" ng-click="recordTuna()"> 
+              <input id="cancelSubmit" type="submit" value="Cancel" class="btn btn-primary2" ng-click=""> 
+          </div>
+        
+        
+        
+        
+        </section>
+      </div>
+  </body>
+    <!-- requiring the angular page -->
+    <script type="text/javascript" src="app.js"> </script>
+</html>

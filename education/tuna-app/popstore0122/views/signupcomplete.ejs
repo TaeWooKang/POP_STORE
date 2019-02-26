@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>회원가입 완료 페이지</title>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="lumen/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/freebie-bootstrap-footers/assets/css/Footer-with-button-logo.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <style>
+    .container{
+      width: 1120px;
+      max-width: none !important;
+      justify-content: center;
+    }
+    .send-button{
+      background: #54C7C3;
+      width:100%;
+      font-weight: 600;
+      color:#fff;
+      padding: 8px 25px;
+    }
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .my-input1{
+      box: soild 0 1px 2px rgba(0, 0, 0, 0.1);
+      border-color: #ea4335;
+      cursor: text;
+      padding: 40px 40px 100px 40px;
+      transition: border .1s linear;
+      width:100%;
+      text-align: center;
+      color: #ea4335;
+      margin-bottom:2%;
+      margin-bottom:30px;
+    }
+    .header-title{
+      margin: 10rem 0 5rem 0;
+    }
+    h1{
+      font-size: 31px;
+      line-height: 40px;
+      font-weight: 600;
+      color:#4c5357;
+    }
+    h2{
+      color: #5e8396;
+      font-size: 21px;
+      line-height: 32px;
+      font-weight: 400;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<section>
+  <div class="container" style="margin-bottom: 200px;">
+    <div class="col-xs-6 mx-auto text-center">
+      <div class="header-title">
+        <h1>POP STORE</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 mx-auto" style="width:344px;">
+        <div class="myform form ">
+          <form action="" method="post" name="enroll-finish">
+            <div class="form-group">
+              <div class="form-control my-input1">
+                <h6>회원가입이 완료되었습니다. </h6><br>
+                <h6>10000포인트가 적립되었습니다. </h6>
+              </div>
+            </div>
+            <div class="text-center ">
+              <button type="button" class=" btn btn-primary" style="width:340px; height:40px; margin-right:auto; margin-left:auto;" onclick="movelogin()">로그인</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function movelogin() {
+    location.href = "/login";
+  }
+  function moveindex() {
+    location.href = "/index";
+  }
+</script>
+
+
+<footer id="myFooter">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <h2 class="logo"><a href="#"> LOGO </a></h2>
+      </div>
+      <div class="col-sm-2">
+        <h5>Get started</h5>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Sign up</a></li>
+          <li><a href="#">Downloads</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-2">
+        <h5>About us</h5>
+        <ul>
+          <li><a href="#">Company Information</a></li>
+          <li><a href="#">Contact us</a></li>
+          <li><a href="#">Reviews</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-2">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Help desk</a></li>
+          <li><a href="#">Forums</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-3">
+        <div class="social-networks">
+          <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+          <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+          <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+        </div>
+        <button type="button" class="btn btn-default">Contact us</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <p>© 2016 Copyright Text </p>
+  </div>
+</footer>
+
+</body>
+</html>

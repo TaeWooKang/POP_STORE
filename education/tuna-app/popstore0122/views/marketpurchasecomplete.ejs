@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>구매완료 페이지</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../lumen/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="../../freebie-bootstrap-footers/assets/css/Footer-with-button-logo.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <% include ../public/stylesheets/nav %>
+  <style>
+    .container1{
+      margin-left:auto;
+      margin-right:auto;
+      padding-top: 40px;
+    }
+    .container{
+      width: 1120px;
+      max-width: none !important;
+      justify-content: center;
+    }
+    .panel {
+      background-color: #fff;
+      margin: 28px 20px 30px 0px;
+      padding: 10px 44px 44px 44px;
+      width: 100%;
+    }
+
+    .row{
+      margin: 30px 20px 30px 20px;
+    }
+    h1{
+      font-size: 40px;
+      line-height: 40px;
+      font-weight: 600;
+      color:#4c5357;
+    }
+    .header h1 a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .my-input{
+      box: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      cursor: text;
+      /*padding: 8px 10px;*/
+      transition: border .1s linear;
+      width:100%;
+      height: 40px;
+      margin-top:0px;
+    }
+    .my-input2{
+      box: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      cursor: text;
+      /*padding: 8px 10px;*/
+      transition: border .1s linear;
+      width:100%;
+      height: 100px;
+      margin-top:0px;
+    }
+    .text-center1{
+      padding-left:34%;
+      padding-right:-18%;
+      text-align:center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="container1" style="margin:auto;">
+  <div class="row" style="width: 1240px; margin:auto;">
+    <div class="panel" style="width: 1238px; margin-left:auto; margin-right:auto;">
+      <div class="panel-body">
+        <h1>이미지 구매가 완료 되었습니다.</h1>
+        <hr>
+        <div class="row">
+          <div class="row">
+            <div class="col-md-5" id="image">
+            </div>
+            <div class="col-md-6" style="margin-left: 60px;">
+              <div class="profile-block">
+                <div class="form-group row">
+                  <h5>구매자</h5>
+                  <div class="form-control my-input" id="user_id">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <h5>이미지 이름</h5>
+                  <div class="form-control my-input" id="image_name">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <h5>이미지 정보</h5>
+                  <div class="form-control my-input2" id="image_info">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <h5>이미지 ID</h5>
+                  <input class="form-control my-input" id="image_id" readonly>
+                </div>
+                <div class="form-group row">
+                  <h5>현재 소유자</h5>
+                  <div class="form-control my-input" id="own_user_id">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div style="text-align: center; height:70px;">
+          <button class=" btn btn-success" style="inline:block; width:200px; font-size: 16px;" onclick="movemain()">메인페이지</button>
+          <button class=" btn btn-success" style="inline:block; width:200px; font-size: 16px;" onclick="movemypage()">마이페이지</button>
+          <button class=" btn btn-primary" style="inline:block; width:200px; font-size: 16px;" onclick="movemarket()">판매게시판</button>
+        </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script>
+  function get_imagecompleteselect(req,res){
+    $.ajax({
+      type : "post",
+      url : "/market/marketpurchasecomplete",
+      dataType : "json",
+      contentType : "application/json; charset=UTF-8",
+      success : function(data){
+        function number_to_human_size(x) {
+        var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+        var e = Math.floor(Math.log(x) / Math.log(1024));
+        return (x / Math.pow(1024, e)).toFixed(2) + " " + s[e];
+        }
+        filesize1 = number_to_human_size(data.filesize);
+        var user_id = `<p>${data.user_id}</p>`;
+        var image_id = data.image_id;
+        var image_name = `<p>${data.image_name}</p>`;
+        var image_info = `<p>사이즈: ${filesize1}<br>타입: ${data.filetype}<br>등록일자: ${data.timestamp}</p>`;
+        var filetype = `<p>타입: ${data.filetype}</p>`;
+        var timestamp = `<p>등록일자: ${data.timestamp}</p>`;
+        var origin_path = data.origin_path;
+        $('#user_id').append(user_id);
+        $('#own_user_id').append(user_id);
+        $('#image_name').append(image_name);image_info
+        $('#image_info').append(image_info);
+        $('#image_id').val(image_id);
+        var html = `<img class="img-responsive" src="/${origin_path}" style="width: 100%";>`;
+        $('#image').append(html);
+      }
+    })
+  }
+  get_imagecompleteselect();
+  function movemain() {
+    location.href = "/main";
+  }
+  function movemypage() {
+    location.href = "/mypage";
+  }
+  function movemarket() {
+    location.href = "/market";
+  }
+</script>
+<% include ../public/stylesheets/footer %>
+</body>
+</html>
+
+
+

@@ -1,0 +1,137 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hyperledger Fabric Tuna Application</title>
+    <link rel="icon" href="favicon.png" type="image/gif">
+
+    <!-- require jquery and bootstrap scripts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    
+    <!-- adding style here -->
+    <style type="text/css">
+      header{
+        background-color: lightgray;
+        font-size:20px;
+        padding:15px;
+      }
+      header, .form-group{
+        margin-bottom: 3%;
+      }
+      .form-group{
+        width:50%;
+      }
+      #body{
+        margin-left:3%;
+        margin-right:3%;
+      }
+      .form-control{
+        margin: 8px;
+      }
+      #right_header{
+        width:20%;
+        font-size:15px;
+        margin-right:0px;
+      }
+      #left_header{
+        margin-left:0;
+        width:40%;
+        display:inline-block;
+      } 
+      #id {
+        width:49%;
+        display: inline-block;
+      }
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+    </style>
+        <h1><a href="./index.html">go to addTuna</a></h1>
+        <h1><a href="./index2.html">go to queryTuna</a></h1>
+        <h1><a href="./index3.html">go to changeHolderTuna</a></h1>
+  </head>
+  <body ng-app="application" ng-controller="appController">
+    <header>
+      <div id="left_header">Hyperledger Fabric Tuna Application</div>
+      <i id="right_header">Example Blockchain Application for Introduction to Hyperledger Fabric LFS171x</i>
+    </header>
+
+    <div id="body">
+      <div class="form-group">
+        <label>Query All Tuna Catches</label>
+        <p><input id="queryAllTuna" type="submit" value="Query" class="btn btn-primary" ng-click="queryAllTuna()"></p>
+      </div>
+ 
+      <table id="all_tuna" class="table" align="center">
+
+        <tr>
+          <th>ID</th>
+          <th>ImageHash</th>
+          <th>Creater</th>
+          <th>privious holder</th>
+          <th>Current Holder</th>
+          <th>TimeStamp</th>
+          <th>Block Number</th>
+          <th>Trade Point</th>
+        </tr>
+
+        <tr ng-repeat="tuna in all_tuna">
+          <td>{{tuna.Key}}</td>
+          <td>{{tuna.imagehs}}</td>
+          <td>{{tuna.creater}}</td>
+          <td>{{tuna.priholder}}</td>
+          <td>{{tuna.crholder}}</td>
+          <td>{{tuna.timestamp}}</td>
+          <td>{{tuna.blocknumber}}</td>
+          <td>{{tuna.point}}</td>
+        </tr>
+      </table>
+
+      <div class="form-group">
+        <label>Query a Specific Tuna Catch</label><br>
+        <h5 style="color:red;margin-bottom:2%" id="error_query">Error: Please enter a valid Tuna Id</h5>
+        
+        Enter a catch number: <input id="createName" class="form-control" type="text" placeholder="Ex: 3" ng-model="tuna_id">
+        <input id="querySubmit" type="submit" value="Query" class="btn btn-primary" ng-click="queryTuna()">
+      </div>
+
+      <table id="query_tuna" class="table" align="center">
+
+        <tr>
+          <th>ImageHash</th>
+          <th>Creater</th>
+          <th>privious holder</th>
+          <th>Current Holder</th>
+          <th>TimeStamp</th>
+          <th>Block Number</th>
+        </tr>
+
+        <tr>
+          <td>{{query_tuna.imagehs}}</td>
+          <td>{{query_tuna.creater}}</td>
+          <td>{{query_tuna.priholder}}</td>
+          <td>{{query_tuna.crholder}}</td>
+          <td>{{query_tuna.timestamp}}</td>
+          <td>{{query_tuna.blocknumber}}</td>
+        </tr>
+      </table>
+     </table>
+    </div>
+  </body>
+    <!-- requiring the angular page -->
+    <script type="text/javascript" src="app.js"> </script>
+</html>

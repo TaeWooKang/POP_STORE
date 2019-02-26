@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>POP STORE</title>
+
+  <% include ../public/stylesheets/nav %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
+  <link rel="stylesheet" href="image/cards-gallery.css">
+  <link rel='stylesheet' href='/stylesheets/swiper.css'>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/GridLoadingEffects/css/default.css" />
+  <link rel="stylesheet" type="text/css" href="/GridLoadingEffects/css/component.css" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="lumen/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/freebie-bootstrap-footers/assets/css/Footer-with-button-logo.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <script src="/GridLoadingEffects/js/modernizr.custom.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+  <style>
+    .container{
+      margin-right:auto;
+      margin-left:auto;
+      justify-content: center;
+    }
+    .container1{
+      margin-left:auto;
+      margin-right:auto;
+      padding-top: 40px;
+    }
+    h1{
+      font-size: 40px;
+      line-height: 40px;
+      font-weight: 600;
+      color:#4c5357;
+    }
+    .header h1 a {
+      color: #fff;
+      text-decoration: none;
+    }
+    h2 {
+      margin-left: 25px;
+      line-height: 70px;
+      margin-bottom: 40px;
+    }
+    .text-center1{
+      text-align:center;
+    }
+    .img-circle{
+      border-radius: 50%;
+      width:150px;
+      margin-bottom: 27px;
+    }
+
+
+    .swiper-container {
+      width: 1000px;
+      height: 400px;
+      border: 1px solid white;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+    #columns{
+      column-width:260px;
+      column-gap: 5px;
+    }
+    #columns figure{
+      display: inline-block;
+      margin:0;
+      margin-bottom: 5px;
+      padding:10px;
+    }
+    #columns figure img{
+      width:100%;
+    }
+    #columns figure figcaption{
+      padding:10px;
+    }
+  </style>
+</head>
+<body>
+
+
+
+<div class="container1" style="margin:auto;">
+
+
+  <div class="row"style="width: 1240px; margin:auto;">
+
+    <div class="col-md-2" style="height: 200px;">
+      <img style="margin:8%;" src="https://i.pinimg.com/564x/bc/7f/75/bc7f75a204f1815310a09985d77b72bb.jpg" class="img-circle">
+    </div>
+    <div class="col-md-4" style="height: 200px;">
+      <div id ="user_profile" style="margin-top: 15px; margin-left: 15px;">
+        <div text-align="center" style="inline:block">
+          <h5 id="user_id">ID: </h5>
+        </div>
+        <div text-align="center" style="inline:block">
+          <h5 id="user_nickname">Nickname: </h5>
+        </div>
+        <div text-align="center" style="inline:block">
+          <h5 id="user_name">Username: </h5>
+        </div>
+        <div text-align="center" style="inline:block">
+          <h5 id="user_point">Point: </h5>
+        </div>
+      </div>
+      <hr>
+      <div class="row" style="margin-top: 5px;">
+        <div class="col" style="text-align: center">
+          <button type="button" class="btn btn-success" style="inline:block; width:90%; font-size: 16px;" onclick="movemypage()">마이페이지</button>
+        </div>
+        <div class="col" style="text-align: center">
+          <button type="button" class="btn btn-danger" style="inline:block; width:90%; font-size: 16px;" onclick="moveindex()">로그아웃</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" style="height: 200px;">
+      <div class="row" style="margin-top:20px; text-align: center">
+        <div class="col" style="inline:block;">
+          <button type="search" class="btn btn-outline-dark" style=" width:160px; height: 160px; font-size: 16px;" onclick="moveimageregistration()">이미지 등록하기</button>
+        </div>
+        <div class="col" style="inline:block;">
+          <button type="search" class="btn btn-outline-dark" style=" width:160px; height: 160px; font-size: 16px;" onclick="moveimagehistory()">이미지 이력조회</button>
+        </div>
+        <div class="col" style="inline:block;">
+          <button type="search" class="btn btn-outline-dark" style=" width:160px; height: 160px; font-size: 16px;" onclick="movemarket()">POP MARKET</button>
+        </div>
+      </div>
+    </div>
+
+
+  <script type="text/javascript">
+    function get_profile(req,res){
+      var html ="";
+      $.ajax({
+        type : "post",
+        url : "/profile/get_profile",
+        dataType : "json",
+        contentType : "application/json; charset=UTF-8",
+        success : function(data){
+          var div = document.getElementById('#user_profile');
+          var user_id = data.key.user_id;
+          var user_nickname = data.key.user_nickname;
+          var user_name = data.key.user_name;
+          var point = data.key.point;
+          $('#user_id').append(user_id);
+          $('#user_nickname').append(user_nickname);
+          $('#user_name').append(user_name);
+          $('#user_point').append(point);
+        }
+      })
+    }
+    get_profile();
+    function movemypage() {
+      location.href = "/mypage";
+    }
+    function moveindex() {
+      location.href = "/logout";
+    }
+    function moveimageregistration() {
+      location.href = "/upload";
+    }
+    function moveimagehistory() {
+      location.href = "/imagehistory";
+    }
+    function movemarket() {
+      location.href = "/market";
+    }
+  </script>
+  </br>
+<div style="margin-left:auto; margin-right:auto; margin-top:40px; text-align: center;">
+  <h1>
+    최신 판매글 미리보기
+  </h1>
+</div>
+  <div class="swiper-container" style="margin-bottom: 20px; width: 1240px;">
+    <hr>
+    <div class="swiper-wrapper">
+      <% var length = Object.keys(board_content).length; %>
+
+      <% for(var i=0; i< length; i++ ) { %>
+        <% if (i > 10){ break;}%>
+        <% count = length-i-1 %>
+        <% var d = board_content[count].timestamp;%>
+        <% var html_board_tag =""; %>
+        <% for (k = 0; k < board_tag.length; k++){ %>
+          <%  if(board_tag[k].board_no == board_content[count].BOARD_NO){ %>
+            <%     html_board_tag += "#"+board_tag[k].tagged+" " %>
+          <% } %>
+        <% } %>
+        <% if(board_content[count].blind == "N") { %>
+
+        <div id="swiperdiv" class="swiper-slide" style="width:600px;">
+          <div class="row">
+
+              <div style="margin-right: 15px;">
+                  <a href='/market/marketpostcontent/<%= board_content[count].BOARD_NO %>'/><img src="<%= image[count].copy_path %>" alt="이미지가 없습니다." style="border-radius: 5px; width: 300px; height: 300px;"></a>
+              </div>
+
+              <div style="text-align: left;">
+                <h6 style="margin-bottom: 10px;">
+                  <span class="badge badge-dark">글 번호 : <%= board_content[i].BOARD_NO%> 조회수 : <%= board_content[count].hit %></span>
+                </h6>
+
+                <h1 class="card-title">
+                  <a href='/market/marketpostcontent/<%= board_content[count].BOARD_NO %>'>
+                    <%= board_content[count].subject %>
+                  </a>
+                </h1>
+                <% var inputid = 'input'+ board_content[count].BOARD_NO %>
+                <br>
+
+                <h5>판매자 : <%= board_content[count].user_id %></h5>
+                  <!--<button style="height:25px; float:right" class="btn btn-outline-dark btn-sm" onclick="copyText('<%=inputid%>', '<%=board_content[count].image_id%>')">이미지ID 복사</button>-->
+                <hr>
+
+                <div>
+                  <button type="button" class="btn btn-dark btn-lg btn-block" style="font-size: 20px; height:45px;"><%= board_content[count].price %> POINT</button>
+                </div>
+                <hr>
+
+                <span class="badge badge-dark">TAG : <%= html_board_tag %></span><br>
+                <span class="badge badge-primary"><%= d.getFullYear() +'년 '+ (d.getMonth()+1) +'월 '+ d.getDate() +'일 '+ d.getHours() +'시 '+ d.getMinutes() +'분 '%></span>
+
+                <script>
+                  var copyText = function(inputId, imageId){
+                    var textField = document.createElement("textarea");
+                    document.body.appendChild(textField);
+                    textField.value = imageId;
+                    textField.select();
+                    document.execCommand('copy');
+                    alert(`이미지 ID가 복사되었습니다. ${imageId}`);
+                  }
+                </script>
+              </div>
+          </div>
+        </div>
+        <% } %>
+      <% }%>
+    </div>
+    <!-- Add Pagination -->
+    <!--<div class="swiper-pagination"></div>-->
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
+  <div class="text-center1" style="margin-right:auto; margin-left:auto; margin-bottom: 20px;">
+    <button type="search" class=" btn btn-primary" style="width:300px; font-size: 16px;"onclick="moveimagehistory()" >이미지 전체 이력<br> 조회</button>
+    <button type="write" class=" btn btn-danger" style="width:300px; font-size: 16px;"onclick="movemarket()" >이미지 판매글 <br>작성하러 가기</button>
+  </div>
+
+  <section class="" style="width: 1240px;">
+    <div class="container" style="margin-top: 40px;">
+        <h1 class="text-center">
+          POP STORE Gallery
+        </h1>
+      <hr>
+        <ul class="grid effect-8" id="grid">
+        <% var length1 = Object.keys(all_image).length; %>
+        <% a = "";%>
+          <% for (j = 0; j < length1; j++) { %>
+            <% if(j > 20){ break;}%>
+              <% a +=`
+                     <li>
+                        <a data-toggle="lightbox" data-gallery="example-gallery" class="lightbox" href="${all_image[length1-j-1].copy_path}">
+                            <img src="${all_image[length1-j-1].copy_path}" alt="Card Image" class="img-fluid" style="width:100%; border-radius: 10px; border:2px solid white">
+                        </a>
+                     </li>
+              ` %>
+          <% }%>
+        <%- a%>
+        </ul>
+    </div>
+  </section>
+
+  <!-- Swiper JS -->
+  <script src="js/swiper.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+  var swiper = new Swiper('.swiper-container', {
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'fraction',
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+  </div>
+
+  </div>
+</div>
+
+<script>
+  $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+  });
+</script>
+
+
+
+<script src="/GridLoadingEffects/js/masonry.pkgd.min.js"></script>
+<script src="/GridLoadingEffects/js/imagesloaded.js"></script>
+<script src="/GridLoadingEffects/js/classie.js"></script>
+<script src="/GridLoadingEffects/js/AnimOnScroll.js"></script>
+<script>
+  new AnimOnScroll( document.getElementById( 'grid' ), {
+    minDuration : 0.4,
+    maxDuration : 0.7,
+    viewportFactor : 0.2
+  } );
+</script>
+<script src="lightbox//ekko-lightbox.min.js"></script>
+
+<% include ../public/stylesheets/footer %>
+
+</body>
+</html>

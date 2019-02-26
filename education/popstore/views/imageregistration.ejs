@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<head>
+  <title>이미지 등록 페이지</title>
+  <meta charset="utf-8">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="lumen/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/freebie-bootstrap-footers/assets/css/Footer-with-button-logo.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="bootstrap-filestyle.min.js"></script>
+  <% include ../public/stylesheets/nav %>
+  <style>
+    h3{
+      font-size: 30px;
+      line-height: 40px;
+      font-weight: 600;
+      color:#4c5357;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row" style="margin-bottom: 100px;" >
+    <div class="jumbotron" style="margin-top:100px; margin-left:auto; margin-right:auto;">
+      <h3 class="display-5 text-center">이미지 등록</h3>
+      <h5>등록하려고 하는 원본 이미지를 첨부해주세요.</h5>
+      <hr class="my-4">
+      <form>
+        <img id ="foo" src="image/android-gallery-animation-by-maximilian-keppeler.gif" style="width:400px; display:block; margin:auto; margin-bottom: 30px"/>
+        <input type="file" name="imgFile" id="imgFile1"><br>
+        <script>
+          $('#imgFile1').filestyle({
+
+          });
+          function readURL(input){
+            if(input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function(e){
+                $('#foo').attr('src', e.target.result);
+              }
+              reader.readAsDataURL(input.files[0]);
+            }
+          }
+          $("#imgFile1").change(function() {
+            readURL(this);
+          });
+        </script>
+        <div class="row" style="text-align: center" >
+          <div class="col" style="inline:block;">
+            <input id="enroll" type="button" class="btn btn-dark" style="width: 150px; font-size: 16px;" value="등록">
+          </div>
+          <div class="col" style="inline:block;">
+            <button type="button" class="btn btn-danger" style="width: 150px; font-size: 16px;" onclick="movemain()">취소</button>
+          </div>
+        </div>
+        <script>
+          $(function(){
+            $("#enroll").click(function(){
+              var form = $('form')[0];
+              var formData = new FormData(form);
+              var file_type = formData.get('imgFile').type;
+              if (file_type != 'image/jpeg' && file_type != 'image/png'){
+                alert("파일의 형식이 JPG또는 jpeg가 아닙니다.");
+                return false;
+              }
+              else{
+                $.ajax({
+                  url: '/upload/create',
+                  processData: false,
+                  contentType: false,
+                  data: formData,
+                  type: 'POST',
+                  success: function(result){
+                    if (result=="imageundefined") {
+                      alert("이미지를 선택해주세요");
+                    }else if (result =="typeError"){
+                      alert("파일의 형식이 JPG또는 jpeg가 아닙니다.");
+                    }else if (result =="ER_DUP_ENTRY"){
+                      alert("이미 등록되어 있는 이미지 입니다.");
+                    }else{
+                      $.ajax({
+                        url: '/imagehistory/add_tuna/',
+                        data: result,
+                        type: 'POST',
+                        success: function(result2){
+                          result_json = {
+                            image_id : result.image_id,
+                            txid : result2
+                          }
+                          $.ajax({
+                            url: '/imagehistory/inserttxid/',
+                            data: result_json,
+                            type: 'POST',
+                            success: function(result3){
+                              if(result3=="success"){
+                                location.href="/upload/imageregistrationcomplete";
+                              }
+                              else{
+                                alert("실패");
+                              }
+                            }
+                          });
+                        }
+                      });
+                    }
+                  }
+                });
+              }
+            });
+          })
+        </script>
+      </form>
+    </div>
+ </div>
+</div>
+
+<script type="text/javascript">
+  function movemain() {
+    location.href = "/main";
+  }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<% include ../public/stylesheets/footer %>
+</body>
+</html>
+

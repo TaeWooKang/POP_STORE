@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>내 정보</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="lumen/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/freebie-bootstrap-footers/assets/css/Footer-with-button-logo.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <% include ../public/stylesheets/nav %>
+
+  <style>
+    .container{
+      width: 1120px;
+      max-width: none !important;
+      justify-content: center;
+    }
+    .my-input1{
+      box: soild 0 1px 2px rgba(0, 0, 0, 0.1);
+      cursor: text;
+      padding: 8px 10px;
+      transition: border .1s linear;
+      width:100%;
+      margin-bottom:2%;
+    }
+    h1{
+      font-size: 31px;
+      line-height: 40px;
+      font-weight: 600;
+      color:#4c5357;
+    }
+    h2{
+      color: #5e8396;
+      font-size: 21px;
+      line-height: 32px;
+      font-weight: 400;
+    }
+    .text-center1{
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+
+<section>
+  <div class="container" style="margin-bottom: 40px;">
+    <div class="col-xs-6 mx-auto text-center" style="margin-top: 40px;">
+      <div class="">
+        <h1 class="">
+          <p>POP STORE</p>
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 mx-auto" style="width:344px;">
+          <div class="row">
+              <div class="col" id="fool" style="margin-right: 20px;" >
+              </div>
+          </div>
+        <div class="myform form ">
+            <div class="form-group">
+              <label>아이디</label>
+              <div class="form-control my-input1" id="user_id">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>닉네임</label>
+              <div class="form-control my-input1" id="user_nickname">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>이름</label>
+              <div class="form-control my-input1" id="user_name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>전화번호</label>
+              <div class="form-control my-input1" id="phone">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>E-mail</label>
+              <div class="form-control my-input1" id="email">
+              </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+              <div class="col" style="text-align: center">
+                <button type="button" class="btn btn-dark" style="inline:block; width:150px;" onclick="moveprofilesignin()">수정하기 </button>
+              </div>
+              <div class="col" style="text-align: center">
+                <button type="button" class="btn btn-primary" style="inline:block; width:150px;" onclick="movemypage()">돌아가기</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function moveindex() {
+    location.href = "/index";
+  }
+  function moveprofilesignin() {
+    location.href = "/profile/profilesignin";
+  }
+  function movemypage(){
+    location.href="/mypage";
+  }
+  function get_profile(req,res){
+    var html ="";
+
+    $.ajax({
+      type : "post",
+      url : "/profile/get_profile",
+      dataType : "json",
+      contentType : "application/json; charset=UTF-8",
+      success : function(data){
+        var div = document.getElementById('#user_profile');
+        var user_id = data.key.user_id;
+        var user_nickname = data.key.user_nickname;
+        var user_name = data.key.user_name;
+        var phone = data.key.phone;
+        var email = data.key.email;
+        var profile_img = data.key.profile_img;
+        var html_img= `<img id ="fo" src="../${profile_img}" style="width:140px; height:140px; border-radius: 50%; display:block; margin-left:auto; margin-right:auto;"/>`
+        $('#user_id').append(user_id);
+        $('#user_nickname').append(user_nickname);
+        $('#user_name').append(user_name);
+        $('#phone').append(phone);
+        $('#email').append(email);
+        $('#fool').append(html_img);
+      }
+    })
+  }
+  get_profile();
+</script>
+
+<% include ../public/stylesheets/footer %>
+
+</body>
+</html>

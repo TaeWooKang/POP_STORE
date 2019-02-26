@@ -1,0 +1,331 @@
+
+> popstore@1.0.0 start /home/test/popstore
+> node ./bin/www
+
+[0mGET /upload [32m200 [0m10.393 ms - 6642[0m
+[0mGET /stylesheets/style.css [36m304 [0m1.524 ms - -[0m
+[0mGET /upload [36m304 [0m1.837 ms - -[0m
+router get /login
+[0mGET /login [32m200 [0m1.879 ms - 6040[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.408 ms - -[0m
+[0mPOST /login [32m200 [0m66.648 ms - 1[0m
+!!!!!!!!!!!!!
+borad loadind start
+result1 !!!! = [object Object],[object Object],[object Object]
+[0mGET /main [32m200 [0m43.769 ms - 24069[0m
+[0mGET /stylesheets/style.css [36m304 [0m1.020 ms - -[0m
+[0mGET /image/cards-gallery.css [36m304 [0m1.644 ms - -[0m
+[0mGET /stylesheets/swiper.css [36m304 [0m0.791 ms - -[0m
+[0mGET /js/swiper.min.js [36m304 [0m2.267 ms - -[0m
+[0mGET /photo/Preloader_2-1547876764416.gif [36m304 [0m4.149 ms - -[0m
+[0mGET /photo/1463471425818979-1547876623922.jpeg [36m304 [0m4.198 ms - -[0m
+[0mGET /photo/upload-1547876348362.jpg [36m304 [0m3.648 ms - -[0m
+[0mGET /photo/e5a5c4a28563e63a8a89ed938f8435fd-1547875975796.jpg [36m304 [0m3.815 ms - -[0m
+[0mGET /photo/1463471425818979-1547875725750.jpeg [36m304 [0m2.529 ms - -[0m
+[0mGET /photo/2018032000515_0-1547875605486.jpg [36m304 [0m4.204 ms - -[0m
+[0mGET /photo/e5a5c4a28563e63a8a89ed938f8435fd-1547875275364.jpg [36m304 [0m4.972 ms - -[0m
+[0mGET /photo/e5a5c4a28563e63a8a89ed938f8435fd-1547875016181.jpg [36m304 [0m3.686 ms - -[0m
+[0mGET /photo/d698209c3ed2a3f8940102acb0528c20-1547866849565.gif [36m304 [0m3.524 ms - -[0m
+[0mGET /photo/d698209c3ed2a3f8940102acb0528c20-1547876841028.gif [32m200 [0m2.861 ms - 943782[0m
+[0mGET /photo/d698209c3ed2a3f8940102acb0528c20-1547866463478.gif [36m304 [0m4.364 ms - -[0m
+[0mGET /photo/d698209c3ed2a3f8940102acb0528c20-1547866423572.gif [36m304 [0m4.342 ms - -[0m
+[0mGET /photo/2018032000515_0-1547866376812.jpg [36m304 [0m2.516 ms - -[0m
+[0mGET /photo/381432_26114_1058_org-1547866234625.jpg [36m304 [0m0.524 ms - -[0m
+[0mGET /photo/180717_%EC%97%B4%EB%A6%B0%EC%9D%8C%EC%95%85%ED%9A%8C_%ED%8A%B8%EC%99%80%EC%9D%B4%EC%8A%A4_02-1547866186003.jpg [36m304 [0m0.771 ms - -[0m
+get profile....
+5656
+connected.
+[0mPOST /profile/get_profile [32m200 [0m35.579 ms - 200[0m
+[0mGET /photo/180717_%EC%97%B4%EB%A6%B0%EC%9D%8C%EC%95%85%ED%9A%8C_%ED%8A%B8%EC%99%80%EC%9D%B4%EC%8A%A4_02-1547866073369.jpg [36m304 [0m0.745 ms - -[0m
+[0mGET /photo/180717_%EC%97%B4%EB%A6%B0%EC%9D%8C%EC%95%85%ED%9A%8C_%ED%8A%B8%EC%99%80%EC%9D%B4%EC%8A%A4_02-1547865892247.jpg [36m304 [0m0.901 ms - -[0m
+[0mGET /photo/5ac0443f1e00003b137b0438-1547865737093.jpeg [36m304 [0m5.252 ms - -[0m
+[0mGET /photo/180717_%EC%97%B4%EB%A6%B0%EC%9D%8C%EC%95%85%ED%9A%8C_%ED%8A%B8%EC%99%80%EC%9D%B4%EC%8A%A4_02-1547864614576.jpg [36m304 [0m5.417 ms - -[0m
+[0mGET /photo/2018032000515_0-1547862492528.jpg [36m304 [0m5.482 ms - -[0m
+[0mGET /photo/180717_%EC%97%B4%EB%A6%B0%EC%9D%8C%EC%95%85%ED%9A%8C_%ED%8A%B8%EC%99%80%EC%9D%B4%EC%8A%A4_02-1547864613518.jpg [36m304 [0m5.550 ms - -[0m
+[0mGET /photo/5ac0443f1e00003b137b0438-1547793812338.jpeg [36m304 [0m1.584 ms - -[0m
+[0mGET /photo/%EC%9B%8C%EB%84%88%EC%9B%90-1547793342964.jpg [36m304 [0m2.090 ms - -[0m
+[0mGET /photo/%EC%95%84%EC%9D%B4%EC%9C%A0-1547792751001.jpg [36m304 [0m0.715 ms - -[0m
+[0mGET /upload [32m200 [0m3.601 ms - 5212[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.570 ms - -[0m
+[0mGET /bootstrap-filestyle.min.js [36m304 [0m0.571 ms - -[0m
+photo/1463471425818979-1547876909939.jpeg
+[0mPOST /upload/create [32m200 [0m1176.811 ms - 120[0m
+submit recording of a tuna catch: 
+Store path:/home/test/.hfc-key-store
+Successfully loaded user1 from persistence
+Assigning transaction_id:  b68ea15137e6063c3fa254cb5280ad394bb9aacf06326ee1e2bf616f025e0a10
+Transaction proposal was good
+Successfully sent Proposal and received ProposalResponse: Status - 200, message - ""
+---------------------------------------------
+ChannelEventHub {
+  _last_block_seen: Long { low: 30, high: 0, unsigned: false },
+  _starting_block_number: null,
+  _ending_block_number: null,
+  _ending_block_seen: false,
+  _ending_block_newest: false,
+  _allowRegistration: true,
+  _start_stop_registration: null,
+  _chaincodeRegistrants: {},
+  _block_registrant_count: 0,
+  _blockRegistrations: {},
+  connectCallback: null,
+  _transactionRegistrations: {},
+  _event_client: 
+   ServiceClient {
+     '$interceptors': [],
+     '$interceptor_providers': [],
+     '$channel': Channel {} },
+  _stream: null,
+  _connected: false,
+  _connect_running: false,
+  _disconnect_running: false,
+  _filtered_stream: true,
+  _current_stream: 1,
+  _clientContext: 
+   Client {
+     _cryptoSuite: 
+      CryptoSuite_ECDSA_AES {
+        _keySize: 256,
+        _hashAlgo: 'SHA2',
+        _cryptoKeyStore: [Object],
+        _curveName: 'secp256r1',
+        _ecdsaCurve: [Object],
+        _hashFunction: [Function],
+        _hashOutputSize: 32,
+        _ecdsa: [Object] },
+     _mspid: null,
+     _stateStore: FileKeyValueStore { _dir: '/home/test/.hfc-key-store' },
+     _userContext: 
+      User {
+        _name: 'user1',
+        _roles: null,
+        _affiliation: '',
+        _enrollmentSecret: '',
+        _identity: [Object],
+        _signingIdentity: [Object],
+        _mspId: 'Org1MSP',
+        _cryptoSuite: [Object] },
+     _network_config: null,
+     _msps: Map {},
+     _devMode: false,
+     _adminSigningIdentity: null,
+     _tls_mutual: {},
+     _organizations: Map {},
+     _certificateAuthorities: Map {},
+     _channels: Map { 'mychannel' => [Object] },
+     _connection_options: {} },
+  _channel: 
+   Channel {
+     _name: 'mychannel',
+     _channel_peers: Map { 'localhost:7051' => [Object] },
+     _anchor_peers: [],
+     _orderers: Map { 'localhost:7050' => [Object] },
+     _kafka_brokers: [],
+     _clientContext: 
+      Client {
+        _cryptoSuite: [Object],
+        _mspid: null,
+        _stateStore: [Object],
+        _userContext: [Object],
+        _network_config: null,
+        _msps: Map {},
+        _devMode: false,
+        _adminSigningIdentity: null,
+        _tls_mutual: {},
+        _organizations: Map {},
+        _certificateAuthorities: Map {},
+        _channels: [Object],
+        _connection_options: {} },
+     _msp_manager: MSPManager { _msps: {} },
+     _discovery_interests: Map {},
+     _discovery_results: null,
+     _last_discover_timestamp: null,
+     _discovery_peer: null,
+     _use_discovery: false,
+     _as_localhost: true,
+     _endorsement_handler: null,
+     _commit_handler: null },
+  _peer: 
+   Peer {
+     _options: 
+      { 'grpc.max_receive_message_length': -1,
+        'grpc.max_send_message_length': -1 },
+     clientCert: undefined,
+     _url: 'grpc://localhost:7051',
+     _endpoint: Endpoint { addr: 'localhost:7051', creds: ChannelCredentials {} },
+     _name: 'localhost:7051',
+     _request_timeout: 45000,
+     _grpc_wait_for_ready_timeout: 3000,
+     _endorserClient: 
+      ServiceClient {
+        '$interceptors': [],
+        '$interceptor_providers': [],
+        '$channel': Channel {} },
+     _discoveryClient: 
+      ServiceClient {
+        '$interceptors': [],
+        '$interceptor_providers': [],
+        '$channel': Channel {} } } }
+---------------------------------------------
+2019-01-19T05:48:33.587Z - [33mwarn[39m: [ChannelEventHub.js]: Event notification callback failed TypeError: Cannot read property '_endpoint' of undefined
+    at EventRegistration.event_hub.registerTxEvent [as _onEventFn] (/home/test/popstore/fabric-material/tuna-app/controller.js:216:82)
+    at EventRegistration.onEvent (/home/test/popstore/fabric-material/tuna-app/node_modules/fabric-client/lib/ChannelEventHub.js:1562:9)
+    at ChannelEventHub._callTransactionListener (/home/test/popstore/fabric-material/tuna-app/node_modules/fabric-client/lib/ChannelEventHub.js:1323:13)
+    at ChannelEventHub._checkTransactionId (/home/test/popstore/fabric-material/tuna-app/node_modules/fabric-client/lib/ChannelEventHub.js:1308:9)
+    at ChannelEventHub._processTxEvents (/home/test/popstore/fabric-material/tuna-app/node_modules/fabric-client/lib/ChannelEventHub.js:1287:11)
+    at ClientDuplexStream._stream.on (/home/test/popstore/fabric-material/tuna-app/node_modules/fabric-client/lib/ChannelEventHub.js:429:11)
+    at emitOne (events.js:116:13)
+    at ClientDuplexStream.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+[0mPOST /imagehistory/add_tuna/ [0m- [0m- ms - -[0m
+submit recording of a tuna catch: 
+Store path:/home/test/.hfc-key-store
+Successfully loaded user1 from persistence
+Assigning transaction_id:  eca51534784b8ae96492526e802fc6054b16e5956fddc838335fbff3c29e59fa
+Transaction proposal was good
+Successfully sent Proposal and received ProposalResponse: Status - 200, message - ""
+---------------------------------------------
+ChannelEventHub {
+  _last_block_seen: Long { low: 31, high: 0, unsigned: false },
+  _starting_block_number: null,
+  _ending_block_number: null,
+  _ending_block_seen: false,
+  _ending_block_newest: false,
+  _allowRegistration: true,
+  _start_stop_registration: null,
+  _chaincodeRegistrants: {},
+  _block_registrant_count: 0,
+  _blockRegistrations: {},
+  connectCallback: null,
+  _transactionRegistrations: {},
+  _event_client: 
+   ServiceClient {
+     '$interceptors': [],
+     '$interceptor_providers': [],
+     '$channel': Channel {} },
+  _stream: null,
+  _connected: false,
+  _connect_running: false,
+  _disconnect_running: false,
+  _filtered_stream: true,
+  _current_stream: 1,
+  _clientContext: 
+   Client {
+     _cryptoSuite: 
+      CryptoSuite_ECDSA_AES {
+        _keySize: 256,
+        _hashAlgo: 'SHA2',
+        _cryptoKeyStore: [Object],
+        _curveName: 'secp256r1',
+        _ecdsaCurve: [Object],
+        _hashFunction: [Function],
+        _hashOutputSize: 32,
+        _ecdsa: [Object] },
+     _mspid: null,
+     _stateStore: FileKeyValueStore { _dir: '/home/test/.hfc-key-store' },
+     _userContext: 
+      User {
+        _name: 'user1',
+        _roles: null,
+        _affiliation: '',
+        _enrollmentSecret: '',
+        _identity: [Object],
+        _signingIdentity: [Object],
+        _mspId: 'Org1MSP',
+        _cryptoSuite: [Object] },
+     _network_config: null,
+     _msps: Map {},
+     _devMode: false,
+     _adminSigningIdentity: null,
+     _tls_mutual: {},
+     _organizations: Map {},
+     _certificateAuthorities: Map {},
+     _channels: Map { 'mychannel' => [Object] },
+     _connection_options: {} },
+  _channel: 
+   Channel {
+     _name: 'mychannel',
+     _channel_peers: Map { 'localhost:7051' => [Object] },
+     _anchor_peers: [],
+     _orderers: Map { 'localhost:7050' => [Object] },
+     _kafka_brokers: [],
+     _clientContext: 
+      Client {
+        _cryptoSuite: [Object],
+        _mspid: null,
+        _stateStore: [Object],
+        _userContext: [Object],
+        _network_config: null,
+        _msps: Map {},
+        _devMode: false,
+        _adminSigningIdentity: null,
+        _tls_mutual: {},
+        _organizations: Map {},
+        _certificateAuthorities: Map {},
+        _channels: [Object],
+        _connection_options: {} },
+     _msp_manager: MSPManager { _msps: {} },
+     _discovery_interests: Map {},
+     _discovery_results: null,
+     _last_discover_timestamp: null,
+     _discovery_peer: null,
+     _use_discovery: false,
+     _as_localhost: true,
+     _endorsement_handler: null,
+     _commit_handler: null },
+  _peer: 
+   Peer {
+     _options: 
+      { 'grpc.max_receive_message_length': -1,
+        'grpc.max_send_message_length': -1 },
+     clientCert: undefined,
+     _url: 'grpc://localhost:7051',
+     _endpoint: Endpoint { addr: 'localhost:7051', creds: ChannelCredentials {} },
+     _name: 'localhost:7051',
+     _request_timeout: 45000,
+     _grpc_wait_for_ready_timeout: 3000,
+     _endorserClient: 
+      ServiceClient {
+        '$interceptors': [],
+        '$interceptor_providers': [],
+        '$channel': Channel {} },
+     _discoveryClient: 
+      ServiceClient {
+        '$interceptors': [],
+        '$interceptor_providers': [],
+        '$channel': Channel {} } } }
+---------------------------------------------
+2019-01-19T05:50:33.262Z - [33mwarn[39m: [ChannelEventHub.js]: Event notification callback failed TypeError: Cannot read property '_endpoint' of undefined
+    at EventRegistration.event_hub.registerTxEvent [as _onEventFn] (/home/test/popstore/fabric-material/tuna-app/controller.js:216:82)
+    at EventRegistration.onEvent (/home/test/popstore/fabric-material/tuna-app/node_modules/fabric-client/lib/ChannelEventHub.js:1562:9)
+    at ChannelEventHub._callTransactionListener (/home/test/popstore/fabric-material/tuna-app/node_modules/fabric-client/lib/ChannelEventHub.js:1323:13)
+    at ChannelEventHub._checkTransactionId (/home/test/popstore/fabric-material/tuna-app/node_modules/fabric-client/lib/ChannelEventHub.js:1308:9)
+    at ChannelEventHub._processTxEvents (/home/test/popstore/fabric-material/tuna-app/node_modules/fabric-client/lib/ChannelEventHub.js:1287:11)
+    at ClientDuplexStream._stream.on (/home/test/popstore/fabric-material/tuna-app/node_modules/fabric-client/lib/ChannelEventHub.js:429:11)
+    at emitOne (events.js:116:13)
+    at ClientDuplexStream.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+[0mGET /upload [36m304 [0m2.107 ms - -[0m
+[0mPOST /imagehistory/add_tuna/ [0m- [0m- ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.936 ms - -[0m
+[0mGET /bootstrap-filestyle.min.js [36m304 [0m0.921 ms - -[0m
+[0mGET /upload [36m304 [0m1.102 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.771 ms - -[0m
+[0mGET /bootstrap-filestyle.min.js [36m304 [0m0.629 ms - -[0m
+[0mGET /upload [36m304 [0m1.768 ms - -[0m
+[0mGET /bootstrap-filestyle.min.js [36m304 [0m0.695 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.690 ms - -[0m
+[0mGET /upload [36m304 [0m4.261 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m1.070 ms - -[0m
+[0mGET /bootstrap-filestyle.min.js [36m304 [0m0.943 ms - -[0m
+[0mGET /upload [36m304 [0m0.897 ms - -[0m
+[0mGET /bootstrap-filestyle.min.js [36m304 [0m0.642 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.615 ms - -[0m
+[0mGET /upload [36m304 [0m1.069 ms - -[0m
+[0mGET /bootstrap-filestyle.min.js [36m304 [0m0.792 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.630 ms - -[0m
+[0mGET /upload [36m304 [0m2.180 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.926 ms - -[0m
+[0mGET /bootstrap-filestyle.min.js [36m304 [0m0.759 ms - -[0m

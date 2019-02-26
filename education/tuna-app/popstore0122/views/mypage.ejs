@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<head>
+  <title>마이페이지</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
+  <link rel="stylesheet" href="image/cards-gallery.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="lumen/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/freebie-bootstrap-footers/assets/css/Footer-with-button-logo.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/GridLoadingEffects/css/default.css" />
+  <link rel="stylesheet" type="text/css" href="/GridLoadingEffects/css/component.css" />
+  <script src="/GridLoadingEffects/js/modernizr.custom.js"></script>
+  <% include ../public/stylesheets/nav %>
+
+  <script>
+    // var imageList = null;
+
+    // function get_imagecompleteselect(req,res){
+    //   $.ajax({
+    //     type : "post",
+    //     url : "",
+    //     dataType : "json",
+    //     async: false,
+    //     contentType : "application/json; charset=UTF-8",
+    //     success : function(data) {
+    //       imageList = data;
+    //     }
+    //   });
+    // }
+
+    // function imagedetail() {
+      // imageList.forEach(img => {
+      //   div = `
+      //       <div style="margin: 5px;">
+      //         <img style="width:100%; border-radius: 5px;" src="/${img.origin_path}" alt="Card Image" class="" onclick='show(${JSON.stringify(img)})'>
+      //       </div>
+      //   `;
+      //   $('#columns').append(div);
+      // })
+    // }
+    // $(function() {
+    //   get_imagecompleteselect();
+    //   imagedetail();
+    // });
+  </script>
+  <style>
+    .container1{
+      margin-left:auto;
+      margin-right:auto;
+      padding-top: 40px;
+    }
+    h1{
+      font-size: 40px;
+      line-height: 40px;
+      font-weight: 600;
+      color:#4c5357;
+    }
+    .header h1 a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .my-input{
+      cursor: text;
+      padding: 8px 10px;
+      width:100%;
+      height: 47px;
+      margin-top:0px;
+    }
+    .my-input1{
+      cursor: text;
+      padding: 8px 10px;
+      width:100%;
+      height: auto;
+      margin-top:0px;
+    }
+    .img-circle{
+      border-radius: 50%;
+      width:150px;
+      margin-bottom: 27px;
+    }
+    .panel-body{
+      margin-left: 0px;
+    }
+    #columns{
+      column-width:210px;
+      column-gap: 5px;
+    }
+    #columns figure{
+      display: inline-block;
+      margin:0;
+      margin-bottom: 5px;
+      padding:10px;
+    }
+    #columns figure img{
+      width:100%;
+    }
+    #columns figure figcaption{
+      padding:10px;
+    }
+    .navbar-brand{
+      margin-left: 10%;
+    }
+    .form-inline{
+      margin-right: 10%;
+    }
+  </style>
+
+</head>
+<body>
+
+<div class="container1" style="margin:auto;">
+
+  <div class="row"style="width: 1240px; margin:auto;">
+
+    <div class="col-md-2" style="height: 200px;">
+      <img style="margin:8%;" src="https://i.pinimg.com/564x/bc/7f/75/bc7f75a204f1815310a09985d77b72bb.jpg" class="img-circle">
+    </div>
+    <div class="col-md-4" style="height: 200px;">
+      <div id ="user_profile" style="margin-top: 15px; margin-left: 15px;">
+        <div text-align="center" style="inline:block">
+          <h5 id="user_id1">ID: </h5>
+        </div>
+        <div text-align="center" style="inline:block">
+          <h5 id="user_nickname">Nickname: </h5>
+        </div>
+        <div text-align="center" style="inline:block">
+          <h5 id="user_name">Username: </h5>
+        </div>
+        <div text-align="center" style="inline:block">
+          <h5 id="user_point">Point: </h5>
+        </div>
+      </div>
+      <hr>
+      <div class="row" style="margin-top: 5px;">
+        <div class="col" style="text-align: center">
+          <button type="button" class="btn btn-primary" style="inline:block; width:90%; font-size: 16px;" onclick="movemain()">메인페이지</button>
+        </div>
+        <div class="col" style="text-align: center">
+          <button type="button" class="btn btn-success" style="inline:block; width:90%; font-size: 16px;" onclick="moveprofile()">내 정보</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" style="height: 200px;">
+      <div class="row" style="margin-top:20px; text-align: center">
+        <div class="col" style="inline:block;">
+          <button type="search" class="btn btn-outline-dark" style=" width:160px; height: 160px; font-size: 16px;" onclick="moveimageregistration()">이미지 등록하기</button>
+        </div>
+        <div class="col" style="inline:block;">
+          <button type="search" class="btn btn-outline-dark" style=" width:160px; height: 160px; font-size: 16px;" onclick="moveimagehistory()">이미지 이력조회</button>
+        </div>
+        <div class="col" style="inline:block;">
+          <button type="search" class="btn btn-outline-dark" style=" width:160px; height: 160px; font-size: 16px;" onclick="movemarket()">POP MARKET</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="panel" style="width: 1240px;">
+      <section class="gallery-block cards-gallery" style="width: 1240px;">
+        <div class="container">
+          <h1 class="text-center" style="margin-bottom: 10px;">내 이미지 모아보기</h1>
+          <hr>
+          <h5 class="text-center" style="margin-bottom: 20px;">이미지를 누르면 상세정보가 나옵니다</h5>
+          <ul class="grid effect-8" id="grid">
+              <% div = ""; %>
+              <% imageList.forEach(img => {
+                div += `
+                     <li>
+                      <img style="width:100%; border-radius: 5px;" src="/${img.origin_path}" alt="Card Image" class="" onclick='show(${JSON.stringify(img)})'>
+                     </li>
+                `;
+              }) %>
+              <%- div%>
+            </ul>
+        </div>
+      </section>
+
+      <div id="imageinfo" class="container" style="display:none;" >
+        <div class="gallery-block cards-gallery">
+          <div class="" style="height: 900px; border-radius: 5px; display: -webkit-box">
+            <div class="" style="width:900px; margin:auto;">
+              <h2 class="text-center">이미지 상세정보</h2>
+              <hr>
+
+              <div class="profile-block">
+                <div class="form-group row">
+                  <h4>소유자 ID</h4>
+                  <div class="form-control my-input">
+                    <div id="user_id" class="text-muted card-text"></div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <h4>이미지 ID</h4>
+                  <div class="form-control my-input">
+                    <div id="image_id" class="text-muted card-text"></div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <h4>이미지 정보</h4>
+                  <div class="form-control my-input1">
+
+                    <h5 class="text-muted card-text">이미지 이름</h5>
+                    <div id="image_name" class="text-muted card-text"></div>
+                    <hr>
+                    </br>
+                    <h5 class="text-muted card-text">파일 사이즈</h5>
+                    <div id="filesize" class="text-muted card-text"></div>
+                    <hr>
+                    </br>
+                    <h5 class="text-muted card-text">파일 형식</h5>
+                    <div id="filetype" class="text-muted card-text"></div>
+                    <hr>
+                    </br>
+                    <h5 class="text-muted card-text">등록일자</h5>
+                    <div id="timestamp" class="text-muted card-text"></div>
+                  </div>
+                </div>
+                    <div class="text-center" style=""; id="moveButton">
+                    </div>
+                    <div class="text-center" style="margin-top: 10px;">
+                      <button type="hide" class=" btn btn-primary" onclick="hide()">접기</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function get_profile(req,res){
+    var html ="";
+
+    $.ajax({
+      type : "post",
+      url : "/profile/get_profile",
+      dataType : "json",
+      contentType : "application/json; charset=UTF-8",
+      success : function(data){
+        var div = document.getElementById('#user_profile');
+        var user_id = data.key.user_id;
+        var user_nickname = data.key.user_nickname;
+        var user_name = data.key.user_name;
+        var point = data.key.point;
+        $('#user_id1').append(user_id);
+        $('#user_nickname').append(user_nickname);
+        $('#user_name').append(user_name);
+        $('#user_point').append(point);
+      }
+    })
+  }
+  get_profile();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+<script>
+  baguetteBox.run('.cards-gallery', { animation: 'slideIn'});
+</script>
+<script type="text/javascript">
+  function moveimageregistration() {
+    location.href = "/upload";
+  }
+  function moveprofile() {
+    location.href = "/profile";
+  }
+  function moveimagehistory(img_id) {
+    location.href = `/imagehistory?image_id=${img_id}`;
+  }
+  function movemarket() {
+    location.href = "/market";
+  }
+  function movemain() {
+    location.href = "/main";
+  }
+
+  function hide() {
+    $('#imageinfo').hide();
+  }
+  function show(img) {
+    $('#user_id').text(img.user_id);
+    $('#image_id').text(img.image_id);
+    $('#image_name').text(img.image_name);
+    $('#moveButton').html(`<button type="search" class=" btn btn-success" style="width:300px;" onclick="location.href='/imagehistory?image_id=${img.image_id}'">선택한 이미지의 <br>이력 보기</button>
+                            <button type="write" class=" btn btn-success" style="width:300px;" onclick="movemarket()">이미지 판매글 <br>작성하러 가기</button>`)
+    function number_to_human_size(x) {
+      var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+      var e = Math.floor(Math.log(x) / Math.log(1024));
+      return (x / Math.pow(1024, e)).toFixed(2) + " " + s[e];
+    }
+    filesize1 = number_to_human_size(img.filesize)
+    $('#filesize').text(filesize1);
+
+    $('#filetype').text(img.filetype);
+
+    timestamp = new Date(img.timestamp);
+    timestamp = timestamp.getFullYear() +'년 '+ (timestamp.getMonth()+1) +'월 '+ timestamp.getDate() +'일 '+ timestamp.getHours() +'시 '+ timestamp.getMinutes() +'분 ' + timestamp.getSeconds() +'초 ';
+    $('#timestamp').text(timestamp);
+    $('#imageinfo').show();
+    var offset = $("#imageinfo").offset();
+    $('html, body').animate({scrollTop : offset.top}, 500);
+  }
+</script>
+<script src="/GridLoadingEffects/js/masonry.pkgd.min.js"></script>
+<script src="/GridLoadingEffects/js/imagesloaded.js"></script>
+<script src="/GridLoadingEffects/js/classie.js"></script>
+<script src="/GridLoadingEffects/js/AnimOnScroll.js"></script>
+<script>
+  new AnimOnScroll( document.getElementById( 'grid' ), {
+    minDuration : 0.4,
+    maxDuration : 0.7,
+    viewportFactor : 0.2
+  } );
+</script>
+<% include ../public/stylesheets/footer %>
+
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>판매게시판</title>
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!--<link href="/vendor/bootstrap/js/masonry.pkgd.min.js" rel="stylesheet">-->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="lumen/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/freebie-bootstrap-footers/assets/css/Footer-with-button-logo.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="clipboard.js-master/dist/clipboard.min.js"></script>
+  <% include ../public/stylesheets/nav %>
+  <style>
+    .container1{
+      margin-left:auto;
+      margin-right:auto;
+      padding-top: 40px;
+    }
+
+    .navbar-brand{
+      margin-left: 10%;
+    }
+    .form-inline{
+      margin-right: 10%;
+    }
+    h1{
+      font-size: 77px;
+      line-height: 40px;
+      font-weight: 700;
+      color:#4c5357;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container1" style="margin:auto;">
+  <div class="con" style="width: 1240px; margin:auto;">
+    <div class="mid1" style="width: 1240px; margin-bottom: 30px;margin-top:28px;">
+      <div class="sec1" style="width: 1200px; margin-left:15px;">
+        <h1>POP MARKET</h1>
+        <br>
+        <h4 class="text-muted" style="font-weight:700;">이미지를 거래할 수 있는 게시판입니다</h4>
+        <hr style="border: solid 1px #495057;margin-top:24px">
+        <input type="button" style="width:200px; font-size: 16px;" class="btn btn-dark" value="판매글 작성"  onclick="movemarketposting()"/>
+        <input type="button" style="width:200px; font-size: 16px;" class="btn btn-primary" value="이미지 이력조회"  onclick="moveimagehistory()"/>
+        <input type="button" style="width:200px; font-size: 16px;" class="btn btn-primary" value="메인페이지"  onclick="movemain()"/>
+          <div class="form-inline my-2 my-lg-0" style="float:right; margin-right: 0%;">
+            <input id="search-item" class="form-control mr-sm-2" type="text" placeholder="태그">
+            <input class="btn btn-dark my-2 my-sm-0" type="button" onclick="movesearch()" value="검색">
+          </div>
+        <hr style="border: solid 1px lightgray; ">
+        <div style="text-align: center;">
+          <button type="button" style="font-size: 18px;inline:block;border-top:0; border-left:0px;border-right:0;margin-top:40px;" class="btn btn-outline-dark"  id="btn-blind-N">판매중인 글 보기</button>
+          <button type="button" style="font-size: 18px;inline:block;border-top:0; border-left:0px;border-right:0;margin-top:40px;" class="btn btn-outline-danger"  id="btn-blind-Y">판매완료된 글 보기</button>
+          <button type="button" style="font-size: 18px;inline:block;border-top:0; border-left:0px;border-right:0;margin-top:40px;;" class="btn btn-outline-primary"  id="btn-blind-notall">전체 글 보기</button>
+        </div>
+
+      </div>
+    </div>
+
+<section>
+    <div class="mid2" style="width: 1240px; margin-top: 20px; text-align: center"  >
+      <% if (item){ %>
+        <% is_item = `<input type="button" class="btn btn-primary" style="margin-top:20px; inline:block; width:100px; height:60px;" onclick="movemarket()" value="모든 글 보기"/>` %>
+        <%- is_item %>
+      <% } %>
+      <div class="row" style=" width: 1240px; margin-right: auto; margin-left: auto; margin-top: 10px;">
+
+
+        <% var length = Object.keys(board_content).length; %>
+        <% for(var i=length-1; i>-1; i-- ) { %>
+          <% var d = board_content[i].timestamp;%>
+          <% var html_board_tag =""; %>
+          <% for (k = 0; k < board_tag.length; k++){ %>
+            <%  if(board_tag[k].board_no == board_content[i].BOARD_NO){ %>
+              <%     html_board_tag += "#"+board_tag[k].tagged+" " %>
+            <% } %>
+          <% } %>
+          <div class="col-md-3" name="<%= board_content[i].blind %>" style="margin-right:auto; margin-left:auto;">
+            <div class="card mb-3" style="display: inline-block;">
+              <a href='/market/marketpostcontent/<%= board_content[i].BOARD_NO %>'>
+                <img class="card-img-top" src="<%= image[i].copy_path %>" style="width:95%; height:45%; margin-right:2.5%; margin-left:2.5%; margin-top: 2.5%" alt="Card image cap">
+              </a>
+              <div class="card-body">
+                <h6 style="margin-bottom: 10px;">
+                  <span class="btn-sm dark">글 번호 : <%= board_content[i].BOARD_NO%> 조회수 : <%= board_content[i].hit %></span>
+                  <button id="copybutton" style="height:25px; float:right" class="btn btn-outline-dark btn-sm" data-clipboard-text="<%=board_content[i].image_id%>" onclick="copyText('<%=board_content[i].image_id%>')">이미지ID 복사</button>
+                  <script>new ClipboardJS('#copybutton');</script>
+                </h6>
+                <hr>
+                <h4 style="height:40px;" class="text-center"><a href='/market/marketpostcontent/<%= board_content[i].BOARD_NO %>'>
+                    <% if(board_content[i].blind == "Y") {
+                      board_content[i].subject = "[판매완료]" + board_content[i].subject;
+                    } %>
+                    <%= board_content[i].subject %></a></h4>
+                <% var inputid = 'input'+ board_content[i].BOARD_NO %><br>
+                <script>
+                  var copyText = function(imageId){
+                    alert(`이미지 ID가 복사되었습니다. ${imageId}`);
+                  }
+                </script>
+                <button type="button" class="btn btn-dark btn-lg btn-block" style="font-size: 16px;"><%= board_content[i].price %> POINT</button>
+                <hr>
+                <span class="badge badge-dark">TAG : <%= html_board_tag %></span><br>
+                <span class="badge badge-primary"><%= d.getFullYear() +'년 '+ (d.getMonth()+1) +'월 '+ d.getDate() +'일 '+ d.getHours() +'시 '+ d.getMinutes() +'분 '%></span>
+              </div>
+            </div>
+          </div>
+      <% }%>
+          </div>
+        </div>
+</section>
+  </div>
+</div>
+
+<script type="text/javascript">
+$("#btn-blind-N").on("click",function(){
+  $("div[name=Y]").hide();
+  $("div[name=N]").show();
+});
+
+$("#btn-blind-Y").on("click",function(){
+  $("div[name=N]").hide();
+  $("div[name=Y]").show();
+});
+
+$("#btn-blind-notall").on("click",function(){
+  $("div[name=Y]").show();
+  $("div[name=N]").show();
+});
+
+function movemarketposting() {
+    location.href = "/market/marketposting";
+  }
+  function moveimagehistory() {
+    location.href = "/imagehistory";
+  }
+  function movemain() {
+    location.href = "/main";
+  }
+  function movemarket() {
+    location.href = "/market";
+  }
+  function movesearch(){
+    item = $("#search-item").val();
+    if(!item){
+      alert("검색어가 입력되지 않았습니다.");
+      return false;
+    }
+    var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+    if(special_pattern.test(item) == true){
+      alert("검색어에 특수문자가 포함되어 있습니다.");
+      return false;
+    }
+    else{
+      location.href = `/market?item=${item}`;
+    }
+  }
+</script>
+
+<% include ../public/stylesheets/footer %>
+
+</body>
+</html>
+
