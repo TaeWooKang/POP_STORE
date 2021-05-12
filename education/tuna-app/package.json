@@ -12,7 +12,7 @@
         "express-session": "^1.15.6",
         "fabric-ca-client": "^1.0.2",
         "fabric-client": "^1.0.2",
-        "grpc": "^1.6.0",
+        "grpc": "^1.24.9",
         "mariadb": "^2.0.2-rc"
     },
     "license": "Apache-2.0",
